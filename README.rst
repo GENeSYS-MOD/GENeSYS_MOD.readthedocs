@@ -1,9 +1,4 @@
-Template for the Read the Docs tutorial
+Source files for the GENeSYS-MOD readthedocs page
 =======================================
 
-This GitHub template includes fictional Python library
-with some basic Sphinx docs.
-
-Read the tutorial here:
-
-https://docs.readthedocs.io/en/stable/tutorial/
+Read the tutorial here: https://genesysmod.readthedocs.io/en/latest/
