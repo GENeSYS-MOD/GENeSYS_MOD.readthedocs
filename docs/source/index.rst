@@ -1,13 +1,9 @@
-Welcome to Lumache's documentation!
+Welcome to the GENeSYS-MOD documentation!
 ===================================
 
-**Lumache** (/lu'make/) is a Python library for cooks and food lovers
-that creates recipes mixing random ingredients.
-It pulls data from the `Open Food Facts database <https://world.openfoodfacts.org/>`_
-and offers a *simple* and *intuitive* API.
+**The Global Energy System Model (GENeSYS-MOD)** is an open source energy system model available in both GAMS and Julia. It is a fork and extension of the Open Source Energy Modelling System (OSeMOSYS).
 
-Check out the :doc:`usage` section for further information, including
-how to :ref:`installation` the project.
+Here, you can find some quick start guides on both languages of the model, as well as detailed documentation of all settings, parameters, variables, and features.
 
 .. note::
 
