@@ -13,9 +13,21 @@ Contents
 --------
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
+   :caption: General
 
    .
    release_notes
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: How-To-Guides
+
    how_to_guides/index
-   mathematical_formulation/index
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Mathematical Formulation
+
+   how_to_guides/index
