@@ -16,7 +16,7 @@ Contents
    :maxdepth: 2
    :caption: General
 
-   .
+   self
    release_notes
 
 
