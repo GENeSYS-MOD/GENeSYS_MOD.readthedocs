@@ -13,10 +13,9 @@ Contents
 --------
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents
+   :maxdepth: 3
 
-   home
+   .
    release_notes
    how_to_guides/index
    mathematical_formulation/index
