@@ -30,11 +30,9 @@ templates_path = ['_templates']
 # -- Options for HTML output
 
 html_theme = 'sphinx_rtd_theme'
-
-# -- Options for EPUB output
-epub_show_urls = 'footnote'
-
+html_static_path = ["_static"]
 html_logo = "_static/genesysflower_800p.png"
+
 
 html_theme_options = {
     #'analytics_id': 'G-XXXXXXXXXX',  #  Provided by Google in your dashboard
@@ -54,3 +52,6 @@ html_theme_options = {
     #'includehidden': True,
     #'titles_only': False
 }
+
+# -- Options for EPUB output
+epub_show_urls = 'footnote'
