@@ -16,7 +16,7 @@ Contents
    :maxdepth: 2
    :caption: Contents
 
-home
-release_notes
-how_to_guides/index
-mathematical_formulation/index
+   home
+   release_notes
+   how_to_guides/index
+   mathematical_formulation/index
