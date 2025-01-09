@@ -30,4 +30,4 @@ Contents
    :maxdepth: 2
    :caption: Mathematical Formulation
 
-   how_to_guides/index
+   mathematical_formulation/index
