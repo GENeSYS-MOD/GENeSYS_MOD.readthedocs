@@ -4,7 +4,7 @@
     height: auto;   /* Maintain the aspect ratio */
     display: block; /* Ensure proper rendering of the image */
     margin: 0 auto; /* Center the logo horizontally */
-    padding: 30px;   /* Add some space around the logo */
+    padding: 50px;   /* Add some space around the logo */
 }
 
 /* Change the header background color */
@@ -13,11 +13,11 @@
 }
 
 /* Change the version text and other header text to black */
-.rst-other-versions, .wy-side-nav-search .version {
+.rst-other-versions, .wy-side-nav-search {
     color: #000; /* Set text color to black */
 }
 
 /* Optional: Adjust padding or spacing for better alignment */
 .wy-side-nav-search {
-    padding: 30px; /* Adjust spacing around the header area */
+    padding: 50px; /* Adjust spacing around the header area */
 }
