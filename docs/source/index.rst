@@ -16,7 +16,8 @@ Contents
    :maxdepth: 2
    :caption: General
 
-   self
+   Home <self>
+   about
    release_notes
 
 
@@ -24,10 +25,21 @@ Contents
    :maxdepth: 2
    :caption: How-To-Guides
 
-   how_to_guides/index
+   how_to_guides/gams/index
+   how_to_guides/julia/index
 
 .. toctree::
    :maxdepth: 2
    :caption: Mathematical Formulation
 
-   mathematical_formulation/index
+   mathematical_formulation/overview
+   mathematical_formulation/sets
+   mathematical_formulation/parameters
+   mathematical_formulation/variables
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Appendix
+
+   references
+   contact
