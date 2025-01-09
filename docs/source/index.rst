@@ -13,6 +13,10 @@ Contents
 --------
 
 .. toctree::
+   :maxdepth: 2
+   :caption: Contents
 
-   usage
-   api
+home
+release_notes
+how_to_guides/index
+mathematical_formulation/index
