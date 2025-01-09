@@ -2,7 +2,7 @@
 
 # -- Project information
 
-project = 'GENeSYS-MOD'
+project = 'GENeSYS-MOD  | The Global Energy System Model'
 copyright = '2024, The GENeSYS-MOD Community'
 author = 'The GENeSYS-MOD Community'
 
@@ -34,4 +34,23 @@ html_theme = 'sphinx_rtd_theme'
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
 
-html_logo = "img/genesysflower_800p.png"
+html_logo = 'img/genesysflower_800p.png'
+
+html_theme_options = {
+    #'analytics_id': 'G-XXXXXXXXXX',  #  Provided by Google in your dashboard
+    #'analytics_anonymize_ip': False,
+    'logo_only': True,
+    'prev_next_buttons_location': 'bottom',
+    'style_external_links': False,
+    #'vcs_pageview_mode': '',
+    #'style_nav_header_background': 'white',
+    #'flyout_display': 'hidden',
+    'version_selector': True,
+    'language_selector': False,
+    # Toc options
+    #'collapse_navigation': True,
+    #'sticky_navigation': True,
+    #'navigation_depth': 4,
+    #'includehidden': True,
+    #'titles_only': False
+}
