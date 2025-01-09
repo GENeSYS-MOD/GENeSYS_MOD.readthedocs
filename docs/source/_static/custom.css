@@ -1,22 +1,23 @@
-/* Limit the logo width to half of the column width */
+/* Scale the logo to occupy 50% of the available column width */
 .wy-side-nav-search .icon img {
-    max-width: 50%; /* Limit the logo width to 50% */
-    height: auto;   /* Maintain aspect ratio */
+    width: 50%;     /* Set the logo to 50% of the parent container */
+    height: auto;   /* Maintain the aspect ratio */
     display: block; /* Ensure proper rendering of the image */
     margin: 0 auto; /* Center the logo horizontally */
+    padding: 30px;   /* Add some space around the logo */
 }
 
 /* Change the header background color */
 .wy-side-nav-search {
-    background-color: #f5f5f5; /* Light gray background color */
+    background-color: #cfcbcb; /* Light gray background color */
 }
 
-/* Optional: Adjust text or icon colors in the header */
-.wy-side-nav-search .icon span {
-    color: #333; /* Dark gray text color */
+/* Change the version text and other header text to black */
+.rst-other-versions, .wy-side-nav-search .icon span {
+    color: #000; /* Set text color to black */
 }
 
-/* Optional: Remove unnecessary padding around the logo */
+/* Optional: Adjust padding or spacing for better alignment */
 .wy-side-nav-search {
-    padding: 10px; /* Adjust spacing around the logo */
+    padding: 10px; /* Adjust spacing around the header area */
 }
