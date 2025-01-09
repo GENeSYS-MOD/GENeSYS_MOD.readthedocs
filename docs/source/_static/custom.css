@@ -13,7 +13,7 @@
 }
 
 /* Change the version text and other header text to black */
-.rst-other-versions, .wy-side-nav-search {
+.version {
     color: #000; /* Set text color to black */
 }
 
