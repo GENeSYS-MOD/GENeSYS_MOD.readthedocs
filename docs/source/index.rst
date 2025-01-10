@@ -27,6 +27,7 @@ Contents
 
    how_to_guides/gams/index
    how_to_guides/julia/index
+   how_to_guides/tools/index
 
 .. toctree::
    :maxdepth: 2
