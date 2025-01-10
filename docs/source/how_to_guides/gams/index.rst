@@ -6,3 +6,4 @@ GENeSYS-MOD.gms
    :caption: GENeSYS-MOD GAMS Guides
 
    quick_start/index
+   user_guide/index
