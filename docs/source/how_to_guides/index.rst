@@ -7,4 +7,4 @@ How-To-Guides
 
    gams/index
    julia/index
-   GENeSYS-MOD.tools <tools/index>
+   tools/index
