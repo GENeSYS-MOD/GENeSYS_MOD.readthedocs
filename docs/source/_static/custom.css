@@ -1,5 +1,5 @@
 /* Scale the logo to occupy 50% of the available column width */
-.wy-side-nav-search .icon icon-home {
+.wy-side-nav-search .icon.icon-home {
     width: fit-content(50%);     /* Set the logo to 50% of the parent container */
     height: auto;   /* Maintain the aspect ratio */
     display: block; /* Ensure proper rendering of the image */
