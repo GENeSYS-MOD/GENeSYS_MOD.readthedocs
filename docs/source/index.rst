@@ -30,13 +30,6 @@ Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Technical Information
-
-   technical_information/switches
-   technical_information/tools
-
-.. toctree::
-   :maxdepth: 2
    :caption: Mathematical Formulation
 
    mathematical_formulation/overview

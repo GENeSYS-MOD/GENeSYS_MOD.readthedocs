@@ -1,8 +1,9 @@
-Julia Quick Start
+GENeSYS-MOD.jl
 =================
 
 .. toctree::
    :maxdepth: 2
-   :caption: Julia Quick Start
+   :caption: GENeSYS-MOD Julia Guides
 
    quick_start/index
+   user_guide/index

@@ -1,8 +1,8 @@
-GAMS Quick Start
+GENeSYS-MOD.gms
 ================
 
 .. toctree::
    :maxdepth: 2
-   :caption: GAMS Quick Start
+   :caption: GENeSYS-MOD GAMS Guides
 
    quick_start/index
