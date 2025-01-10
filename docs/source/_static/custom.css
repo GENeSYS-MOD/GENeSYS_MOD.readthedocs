@@ -1,6 +1,6 @@
 /* Scale the logo to occupy 50% of the available column width */
 .wy-side-nav-search .icon img {
-    width: 50%;     /* Set the logo to 50% of the parent container */
+    width: 30%;     /* Set the logo to 50% of the parent container */
     height: auto;   /* Maintain the aspect ratio */
     display: block; /* Ensure proper rendering of the image */
     margin: 0 auto; /* Center the logo horizontally */

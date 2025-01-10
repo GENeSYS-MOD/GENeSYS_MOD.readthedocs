@@ -2,12 +2,12 @@
 
 # -- Project information
 
-project = 'GENeSYS-MOD  | The Global Energy System Model'
+project = 'GENeSYS-MOD'
 copyright = '2024, The GENeSYS-MOD Community'
 author = 'The GENeSYS-MOD Community'
 
 release = '0.1'
-version = '0.1.0'
+version = 'V 0.1.0'
 
 # -- General configuration
 
@@ -38,7 +38,7 @@ html_css_files = ["custom.css"]
 html_theme_options = {
     #'analytics_id': 'G-XXXXXXXXXX',  #  Provided by Google in your dashboard
     #'analytics_anonymize_ip': False,
-    'logo_only': True,
+    'logo_only': False,
     'prev_next_buttons_location': 'bottom',
     'style_external_links': False,
     #'vcs_pageview_mode': '',
