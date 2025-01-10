@@ -7,17 +7,26 @@
     padding: 10px;   /* Add some space around the logo */
 }
 
-/* Change the header background color */
-.wy-side-nav-search {
-    background-color: #cfcbcb; /* Light gray background color */
-}
-
 /* Change the version text and other header text to black */
 .wy-side-nav-search .version {
     color: #000 !important; /* Force black text for the version number */
 }
-.wy-side-nav-search .icon icon-home {
-    color: #000 !important; /* Force black text for the version number */
+
+.wy-side-nav-search {
+    display: flex;
+    flex-direction: column; /* Stack logo and project name vertically */
+    align-items: center;    /* Center-align both elements */
+    padding-top: 10px;      /* Add spacing above the logo */
+    background-color: #cfcbcb; /* Light gray background color */
+}
+
+/* Style for the project name under the logo */
+.wy-side-nav-search .project-name {
+    color: #000;            /* Set the text color to black */
+    font-size: 18px;        /* Adjust font size */
+    font-weight: bold;      /* Make the text bold */
+    margin-top: 5px;        /* Add spacing between logo and text */
+    text-align: center;     /* Ensure the text is centered */
 }
 
 /* Optional: Adjust padding or spacing for better alignment */
