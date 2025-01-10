@@ -6,3 +6,4 @@ GENeSYS-MOD.tools
    :caption: GENeSYS-MOD Accompanying Tool Guides
 
    weather_timeseries
+   iamc_conversion

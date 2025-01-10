@@ -3,7 +3,7 @@
 # -- Project information
 
 project = 'GENeSYS-MOD | The Global Energy System Model'
-copyright = '2024, The GENeSYS-MOD Community'
+copyright = '2024, the GENeSYS-MOD community'
 author = 'The GENeSYS-MOD Community'
 
 release = '0.1'
