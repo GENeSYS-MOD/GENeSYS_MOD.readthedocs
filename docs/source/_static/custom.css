@@ -4,7 +4,7 @@
     height: auto;   /* Maintain the aspect ratio */
     display: block; /* Ensure proper rendering of the image */
     margin: 0 auto; /* Center the logo horizontally */
-    padding: 0 50px;   /* Add some space around the logo */
+    padding: 50px;   /* Add some space around the logo */
 }
 
 /* Change the header background color */
@@ -19,5 +19,5 @@
 
 /* Optional: Adjust padding or spacing for better alignment */
 .wy-side-nav-search {
-    padding: 5px; /* Adjust spacing around the header area */
+    padding: 10px; /* Adjust spacing around the header area */
 }
