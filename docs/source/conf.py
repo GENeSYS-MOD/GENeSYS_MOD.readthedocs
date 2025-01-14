@@ -17,6 +17,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
+    'myst_parser',
 ]
 
 intersphinx_mapping = {
@@ -33,7 +34,6 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 html_logo = '_static/logo.png'
 html_css_files = ["custom.css"]
-
 
 html_theme_options = {
     #'analytics_id': 'G-XXXXXXXXXX',  #  Provided by Google in your dashboard
