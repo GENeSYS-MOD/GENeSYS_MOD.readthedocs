@@ -1,3 +1,2 @@
-Result Analysis
-
+GAMS Result Analysis
 =============

@@ -1,7 +1,9 @@
 Julia Quick Start Guide
-======================
+=======================
 
 .. toctree::
    :maxdepth: 2
 
-   quick-start.md
+   installation
+   running_genesys_mod_jl
+   result_analysis

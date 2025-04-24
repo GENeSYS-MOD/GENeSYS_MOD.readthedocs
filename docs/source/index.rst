@@ -7,7 +7,7 @@ Here, you can find some quick start guides on both languages of the model, as we
 
 .. note::
 
-   This project is under active development.
+   This project is under active development. Expect some empty entries or larger overhauls. :)
 
 Contents
 --------
@@ -43,4 +43,5 @@ Contents
    :caption: Appendix
 
    references
+   get_involved
    contact

@@ -1,3 +1,4 @@
-Installation
+GAMS Installation
+==================
 
-=============
+Lorem Ipsum.
