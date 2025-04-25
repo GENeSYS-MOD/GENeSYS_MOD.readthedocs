@@ -6,8 +6,8 @@ project = 'GENeSYS-MOD | The Global Energy System Model'
 copyright = '2024, the GENeSYS-MOD community'
 author = 'The GENeSYS-MOD Community'
 
-release = '0.1'
-version = 'V 0.1.0'
+release = '0.2'
+version = 'V 0.2.0'
 
 # -- General configuration
 
@@ -17,7 +17,20 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
+    'sphinxcontrib.bibtex',
+    'myst_parser',
+    "sphinx_github_changelog",
 ]
+
+# Provide a GitHub API token:
+# Pass the SPHINX_GITHUB_CHANGELOG_TOKEN environment variable to your build
+# OR
+# You can retrieve your token any other way you want, but of course, please
+# don't commit secrets to git, especially on a public repository
+sphinx_github_changelog_token = 123456
+
+bibtex_bibfiles = ['references.bib']
+bibtex_default_style = 'plain'
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),

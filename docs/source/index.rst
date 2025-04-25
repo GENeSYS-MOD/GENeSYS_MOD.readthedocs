@@ -1,5 +1,5 @@
 Welcome to the GENeSYS-MOD documentation!
-===================================
+=========================================
 
 **The Global Energy System Model (GENeSYS-MOD)** is an open source energy system model available in both GAMS and Julia. It is a fork and extension of the Open Source Energy Modelling System (OSeMOSYS).
 
