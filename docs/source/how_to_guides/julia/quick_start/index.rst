@@ -7,3 +7,4 @@ Julia Quick Start Guide
    installation
    running_genesys_mod_jl
    result_analysis
+   quick-start

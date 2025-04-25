@@ -18,6 +18,7 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
     'sphinxcontrib.bibtex',
+    'myst_parser',
 ]
 
 bibtex_bibfiles = ['references.bib']
