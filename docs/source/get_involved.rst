@@ -2,7 +2,7 @@ Get Involved
 =============
 
 
-.. image:: _static/gmd_emoji_small.png
+.. image:: _static/gmd_team.jpg
     :width: 600
     :align: center
 
@@ -12,4 +12,6 @@ If you would like to contribute, feel free to fork GENeSYS-MOD from the `GitHub 
 
 Also, there are monthly digital development meetings, where the current progress is being discussed. If you want to join, feel free to :doc:`contact <contact>` us any time!
 
-
+.. image:: _static/gmd_emoji_wo_text.png 
+    :width: 275
+    :align: center
