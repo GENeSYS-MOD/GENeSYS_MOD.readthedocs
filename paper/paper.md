@@ -18,21 +18,21 @@ authors:
     affiliation: 1
   - name: Alena Diesing
 	affiliation: 1
-- name: Karlo Hainsch
+  - name: Karlo Hainsch
     affiliation: 1
   - name: Jonathan Hanto
     affiliation: "1, 4"
-- name: Philipp Herpich
+  - name: Philipp Herpich
     affiliation: "1, 4"
-- Name: Nikita Moskalenko
+  - Name: Nikita Moskalenko
     affiliation: 1
-- name: Dimitri Pinel
+  - name: Dimitri Pinel
     affiliation: 3
-- name: Martha Pedersen
+  - name: Martha Pedersen
 	affiliation: 3
-- name: Dana Reulein
+  - name: Dana Reulein
     affiliation: 2
-- name: Shweta Tiwari
+  - name: Shweta Tiwari
     affiliation: 3
 date: 17 May 2025
 bibliography: paper.bib
