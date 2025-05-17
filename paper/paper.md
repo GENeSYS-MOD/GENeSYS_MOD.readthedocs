@@ -17,7 +17,7 @@ authors:
   - name: Julian Bornemann
     affiliation: 1
   - name: Alena Diesing
-	  affiliation: 1
+	affiliation: 1
 - name: Karlo Hainsch
     affiliation: 1
   - name: Jonathan Hanto
