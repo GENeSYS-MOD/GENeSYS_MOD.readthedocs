@@ -58,8 +58,9 @@ GENeSYS-MOD is a flexible framework to model energy systems at various degrees o
 
 # Statement of need
 
-Energy system models are powerful tools that can help answer 
-The Global Energy System Model (GENeSYS-MOD) has been 
+Energy system models are powerful tools commonly used to create detailed insights into possibly future developments of the energy system, providing valuable information to decision makers. 
+
+The Global Energy System Model (GENeSYS-MOD) was originally released in 2017 [@loffler_designing_2017] and has since then been updated and expanded several times. However, one major shortcoming of older GENeSYS-MOD versions was that it was only available for the General Algebraic Modeling Language (GAMS), a commercial software for model building, which restricted the openness of the framework. Therefore, with version 4.0, we now introduce a new Julia version of GENeSYS-MOD that offers the exact same functionality as the GAMS-based version, but removes all commercial license requirements, especially when also using an open solver such as HiGHS. 
 
 # General framework structure
 
