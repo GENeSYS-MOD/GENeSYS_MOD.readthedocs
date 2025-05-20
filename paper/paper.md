@@ -6,6 +6,7 @@ tags:
   - long-term energy transition analysis
   - GAMS
   - Julia
+  
 authors:
   - name: Konstantin Löffler
     orcid: 0000-0002-5435-1880
@@ -31,11 +32,25 @@ authors:
   - name: Martha Pedersen
 	affiliation: 3
   - name: Dana Reulein
-    affiliation: 2
+    affiliation: 4
   - name: Shweta Tiwari
     affiliation: 3
+	
+affiliations:
+  - name: Technische Universität Berlin, Workgroup for Infrastructure Policy (WIP), Straße des 17. Juni 135, 10623 Berlin, Germany
+    index: 1
+  - name: Norwegian University of Science and Technology, Department of Industrial Economics and Technology Management (IØT), Alfred Getz vei 3, 7491 Trondheim, Norway
+    index: 2
+  - name: SINTEF Energy Research, Energy Systems Department, Sem Sælands vei 11, 7034 Trondheim
+    index: 3
+  - name: Norwegian University of Science and Technology, Department of Electric Energy (IEL), O. S. Bragstads plass 2E, 7491 Trondheim, Norway
+    index: 4
+	
+	
 date: 17 May 2025
 bibliography: paper.bib
+
+---
 
 # Summary
 
