@@ -80,9 +80,9 @@ and refer to \autoref{eq:fourier} from text.
 
 ## Overview over the functionality and capabilities of GENeSYS-MOD
 
-Figure \autoref{fig:inputs_outputs} shows some of the core inputs and outputs of the model.
+\autoref{fig:inputs_outputs} shows some of the core inputs and outputs of the model.
 
-![Main inputs and outputs of GENeSYS-MOD.\label{fig:inputs_outputs}](GENeSYS-MOD_inputs_outputs.png){ width = 90% }
+![Main inputs and outputs of GENeSYS-MOD.\label{fig:inputs_outputs}](GENeSYS-MOD_inputs_outputs.png){width="90%"}
 
 ## Methodology background
 
@@ -91,7 +91,7 @@ Figure \autoref{fig:inputs_outputs} shows some of the core inputs and outputs of
 
 # New features of GENeSYS-MOD version 4
 
-Figure \autoref{fig:version_blocks} displays the additions across multiple major versions of GENeSYS-MOD.
+\autoref{fig:version_blocks} displays the additions across multiple major versions of GENeSYS-MOD.
 
 ![Functionality additions of major GENeSYS-MOD versions.\label{fig:version_blocks}](genesysmod_blocks_v4.pdf)
 
@@ -101,7 +101,7 @@ Figure \autoref{fig:version_blocks} displays the additions across multiple major
 
 ## 
 
-# Applications
+# Past and ongoing research applications
 
 
 
