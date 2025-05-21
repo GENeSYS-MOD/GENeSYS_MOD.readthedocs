@@ -54,7 +54,7 @@ bibliography: paper.bib
 
 # Summary
 
-GENeSYS-MOD is a flexible framework to model energy systems at various degrees of detail, with a focus on sector coupling and the computation of long-term pathways for the energy system.  
+GENeSYS-MOD is a flexible framework that allows the modelling of energy systems at various degrees of detail, with a focus on sector coupling and the computation of long-term pathways for the energy system. The generic formulation makes the framework able to be implemented for a wide range of use cases, allowing for a widely user-defined resolution in terms of temporal, spatial, and technological detail. GENeSYS-MOD performs a cost-optimizing investment and dispatch calculation across all modeled subsectors of the energy system (usually covering at least electricity, buildings, industry, and transport). The newest, fourth version of the framework is now available in both GAMS and Julia for the core model, with optional data management tools written in Python. 
 
 # Statement of need
 
