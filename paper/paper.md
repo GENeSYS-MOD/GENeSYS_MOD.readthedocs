@@ -25,7 +25,7 @@ authors:
     affiliation: "1, 4"
   - name: Philipp Herpich
     affiliation: "1, 4"
-  - Name: Nikita Moskalenko
+  - name: Nikita Moskalenko
     affiliation: 1
   - name: Martha Pedersen
 	affiliation: 3
