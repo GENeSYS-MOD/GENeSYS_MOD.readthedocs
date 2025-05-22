@@ -70,9 +70,10 @@ Contrary to what the name suggests, GENeSYS-MOD can not only be applied at the g
 
 ![Main inputs and outputs of GENeSYS-MOD.\label{fig:inputs_outputs}](GENeSYS-MOD_inputs_outputs.png){width="90%"}
 
-## Methodology background
+## Methodological background
 
-In its origin, GENeSYS-MOD is based on the Open Source Enenergy Modelling System (OSeMOSYS), but has been altered and expanded in functionality over time. Nevertheless, the overall structure and nomenclature have been kept. 
+In its origin, GENeSYS-MOD is based on the Open Source Enenergy Modelling System (OSeMOSYS), but has been altered and expanded in functionality over time. Nevertheless, the overall structure and nomenclature have been kept as measures to make the model easy to learn and use.
+GENeSYS-MOD optimizes the investment decisions on an annual level for a defined model period, usually given in five-year steps towards 2050 or 2060. It then assumes a planner's perspective with perfect foresight as the default option, however, a myopic approach can also be chosen. The time resolution within a year can be flexibly defined via a timeseries reduction algorithm following @gerbaulet_dynelmod:_2017 . This means that depending on the user's computational resources and model setup, almost any time resolution, up to full hourly operation, can be chosen.
 
 
 # General framework structure of GENeSYS-MOD version 4
@@ -91,11 +92,11 @@ The core model source code of GENeSYS-MOD is available in both GAMS and Julia, w
 
 ## GENeSYS-MOD.tools
 
+At this current time, two tools are provided: one focused on generating renewable timeseries and capacity potentials, making use of the open source Atlite package [@hofmann_atlite_2021], as well as one conversion script, allowing GENeSYS-MOD datasets to be converted into the IAMC nomenclature (see [here](https://nomenclature-iamc.readthedocs.io/en/stable/)).
+
 ## Documentation
 
-
-
-
+Encompassing all the other tools and the core model, the documentation is now provided via a readthedocs page that is continuously expanded. Also, there are additional resources in the form of video tutorials uploaded to a [YouTube channel](https://www.youtube.com/@genesys-mod).
 
 
 # New features of GENeSYS-MOD version 4
