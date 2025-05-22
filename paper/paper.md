@@ -58,20 +58,21 @@ GENeSYS-MOD is a flexible framework that allows the modelling of energy systems 
 
 # Statement of need
 
-Energy system models are powerful tools commonly used to create detailed insights into possibly future developments of the energy system, providing valuable information to decision makers. This includes a variety of model outputs such as cost-efficient capacity planning for both generation and flexibility options, as well as information on the resulting costs, supply mixes, and emission trajectories. Noteworthy examples of other established open energy system modelling frameworks include PyPSA, OSeMOSYS, oemof, Balmorel, TIMES, and EMPIRE.
+Energy system models are powerful tools commonly used to create detailed insights into possibly future developments of the energy system, providing valuable information to decision makers. This includes a variety of model outputs such as cost-efficient capacity planning for both generation and flexibility options, as well as information on the resulting costs, supply mixes, and emission trajectories. Noteworthy examples of other established open energy system modelling frameworks include PyPSA [@brown_pypsa_2018], OSeMOSYS [@howells_osemosys_2011], oemof [@hilpert_open_2018], Balmorel [@wiese_balmorel_2018], TIMES [@loulou_documentation_2005], or EMPIRE [@backe_empire_2022]. A comparison of several open source energy system modelling frameworks, including GENeSYS-MOD can be found at @candas_code_2022 . 
 
-The Global Energy System Model (GENeSYS-MOD) was originally released in 2017 [@loffler_designing_2017] and has since then been updated and expanded several times. However, one major shortcoming of older GENeSYS-MOD versions was that it was only available for the General Algebraic Modeling Language (GAMS), a commercial software for model building, which restricted the openness of the framework. Therefore, with version 4.0, we now introduce a new Julia version of GENeSYS-MOD that offers the exact same functionality as the GAMS-based version, but removes all commercial license requirements, especially when also using an open solver such as HiGHS. 
+GENeSYS-MOD, which stands for "The Global Energy System Model", was originally released in 2017 [@loffler_designing_2017] and has since then been updated and expanded several times. However, one major shortcoming of older GENeSYS-MOD versions was that it was only available for the General Algebraic Modeling Language (GAMS), a commercial software for model building, which restricted the openness of the framework. Therefore, with version 4.0, we now introduce a new Julia version of GENeSYS-MOD that offers the exact same functionality as the GAMS-based version, but removes all commercial license requirements, especially when also using an open solver such as HiGHS. 
 
 
 # Overview over the functionality and capabilities of GENeSYS-MOD
 
 GENeSYS-MOD is a cost-optimizing linear program that computes cost-optimal pathways for the energy system across multiple sectors, usually focusing on long-term pathways for the energy system. \autoref{fig:inputs_outputs} shows some of the core inputs and outputs of the model.
+Contrary to what the name suggests, GENeSYS-MOD can not only be applied at the global level (even though that was the initial application [@loffler_designing_2017]), but instead is purely data-driven and has been successfully used in both macro-regional (e.g. Europe) [@moskalenko_europes_2024], country-level [@hanto_effects_2021], and even regional levels [@herpich_100_2024]. 
 
 ![Main inputs and outputs of GENeSYS-MOD.\label{fig:inputs_outputs}](GENeSYS-MOD_inputs_outputs.png){width="90%"}
 
 ## Methodology background
 
-In its origin, GENeSYS-MOD is based on the Open Source Enenergy Modelling System (OSeMOSYS), but has been altered and expanded in functionality over time. Nevertheless, the overall structure and nomenclature has been kept.
+In its origin, GENeSYS-MOD is based on the Open Source Enenergy Modelling System (OSeMOSYS), but has been altered and expanded in functionality over time. Nevertheless, the overall structure and nomenclature have been kept. 
 
 
 # General framework structure of GENeSYS-MOD version 4
@@ -86,7 +87,7 @@ The GENeSYS-MOD.data repository contains all the individual input parameters for
 
 ## GENeSYS-MOD core model
 
-The core model source code of GENeSYS-MOD is available in both GAMS and Julia, with both versions being maintained side by side. 
+The core model source code of GENeSYS-MOD is available in both GAMS and Julia, with both versions being maintained side by side. The model also features a dispatch module, aimed at evaluating the electricity supply configuration that GENeSYS-MOD has provided.
 
 ## GENeSYS-MOD.tools
 
@@ -111,10 +112,12 @@ The core model source code of GENeSYS-MOD is available in both GAMS and Julia, w
 
 # Past and ongoing research applications
 
+GENeSYS-MOD has been used in a wide range of academic publications and research projects with several different regional focus points and research questions. 
 
 
 # Perspective
 
+The software and its ecosystem are under constant development and always looking to improve, be it in terms of functionalities, accessibility, or new exciting research opportunities. Therefore, a small community has established itself, with regular online meetings and an annual development workshop. The goal would be to follow great pioneers like the OSeMOSYS community in that regard, like described in @gardumi_development_2018 .
 
 
 # Acknowledgements
