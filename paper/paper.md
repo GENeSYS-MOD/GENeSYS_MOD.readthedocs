@@ -73,7 +73,7 @@ Contrary to what the name suggests, GENeSYS-MOD can not only be applied at the g
 ## Methodological background
 
 In its origin, GENeSYS-MOD is based on the Open Source Enenergy Modelling System (OSeMOSYS), but has been altered and expanded in functionality over time. Nevertheless, the overall structure and nomenclature have been kept as measures to make the model easy to learn and use.
-GENeSYS-MOD optimizes the investment decisions on an annual level for a defined model period, usually given in five-year steps towards 2050 or 2060. It then assumes a planner's perspective with perfect foresight as the default option, however, a myopic approach can also be chosen. The time resolution within a year can be flexibly defined via a timeseries reduction algorithm following @gerbaulet_dynelmod:_2017 . This means that depending on the user's computational resources and model setup, almost any time resolution, up to full hourly operation, can be chosen.
+GENeSYS-MOD optimizes the investment decisions on an annual level for a defined model period, usually given in five-year steps towards 2050 or 2060. It then assumes a planner's perspective with perfect foresight as the default option, however, a myopic approach can also be chosen. The time resolution within a year can be flexibly defined via a timeseries reduction algorithm following @gerbaulet_dynelmod:_2017. This means that depending on the user's computational resources and model setup, almost any time resolution, up to full hourly operation, can be chosen.
 
 
 # General framework structure of GENeSYS-MOD version 4
