@@ -11,7 +11,7 @@ authors:
   - name: Konstantin Löffler
     orcid: 0000-0002-5435-1880
     corresponding: true # (This is how to denote the corresponding author)
-    affiliation: "1, 2" # (Multiple affiliations must be quoted)
+    affiliation: "1, 2, 4" # (Multiple affiliations must be quoted)
   - name: Stian Backe
     orcid: 0000-0002-7330-772X
     affiliation: "2, 3"
@@ -27,12 +27,12 @@ authors:
     affiliation: "1, 4"
   - Name: Nikita Moskalenko
     affiliation: 1
-  - name: Dimitri Pinel
-    affiliation: 3
   - name: Martha Pedersen
 	affiliation: 3
+  - name: Dimitri Pinel
+    affiliation: 3
   - name: Dana Reulein
-    affiliation: 4
+    affiliation: 5
   - name: Shweta Tiwari
     affiliation: 3
 	
@@ -43,8 +43,10 @@ affiliations:
     index: 2
   - name: SINTEF Energy Research, Energy Systems Department, Sem Sælands vei 11, 7034 Trondheim
     index: 3
-  - name: Norwegian University of Science and Technology, Department of Electric Energy (IEL), O. S. Bragstads plass 2E, 7491 Trondheim, Norway
+  - name: Europa-Universität Flensburg, Department for Sustainable Energy Transition (NEW), Auf dem Campus 1, 24943 Flensburg, Germany
     index: 4
+  - name: Norwegian University of Science and Technology, Department of Electric Energy (IEL), O. S. Bragstads plass 2E, 7491 Trondheim, Norway
+    index: 5
 	
 	
 date: 22 May 2025
