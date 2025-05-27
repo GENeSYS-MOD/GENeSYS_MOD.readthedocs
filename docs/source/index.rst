@@ -30,7 +30,7 @@ Contents
    how_to_guides/tools/index
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Mathematical Formulation
 
    mathematical_formulation/overview
