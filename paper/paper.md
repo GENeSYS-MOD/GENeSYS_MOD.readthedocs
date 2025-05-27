@@ -60,7 +60,7 @@ GENeSYS-MOD is a flexible framework that allows the modelling of energy systems 
 
 # Statement of need
 
-Energy system models are powerful tools commonly used to create detailed insights into possibly future developments of the energy system, providing valuable information to decision makers. This includes a variety of model outputs such as cost-efficient capacity planning for both generation and flexibility options, as well as information on the resulting costs, supply mixes, and emission trajectories. Noteworthy examples of other established open energy system modelling frameworks include PyPSA [@brown_pypsa_2018], OSeMOSYS [@howells_osemosys_2011], oemof [@hilpert_open_2018], Balmorel [@wiese_balmorel_2018], TIMES [@loulou_documentation_2005], or EMPIRE [@backe_empire_2022]. A comparison of several open source energy system modelling frameworks, including GENeSYS-MOD can be found at @candas_code_2022 . 
+Energy system models are powerful tools commonly used to create detailed insights into possible future developments of the energy system, providing valuable information to decision makers. This includes a variety of model outputs such as cost-efficient capacity planning for both generation and flexibility options, as well as information on the resulting costs, supply mixes, and emission trajectories. Noteworthy examples of other established open energy system modelling frameworks include PyPSA [@brown_pypsa_2018], OSeMOSYS [@howells_osemosys_2011], oemof [@hilpert_open_2018], Balmorel [@wiese_balmorel_2018], TIMES [@loulou_documentation_2005], or EMPIRE [@backe_empire_2022]. A comparison of several open source energy system modelling frameworks, including GENeSYS-MOD can be found at @candas_code_2022 . 
 
 GENeSYS-MOD, which stands for "The Global Energy System Model", was originally released in 2017 [@loffler_designing_2017] and has since then been updated and expanded several times. However, one major shortcoming of older GENeSYS-MOD versions was that it was only available for the General Algebraic Modeling Language (GAMS), a commercial software for model building, which restricted the openness of the framework. Therefore, with version 4.0, we now introduce a new Julia version of GENeSYS-MOD that offers the exact same functionality as the GAMS-based version, but removes all commercial license requirements, especially when also using an open solver such as HiGHS. 
 
@@ -68,14 +68,14 @@ GENeSYS-MOD, which stands for "The Global Energy System Model", was originally r
 # Overview over the functionality and capabilities of GENeSYS-MOD
 
 GENeSYS-MOD is a cost-optimizing linear program that computes cost-optimal pathways for the energy system across multiple sectors, usually focusing on long-term pathways for the energy system. \autoref{fig:inputs_outputs} shows some of the core inputs and outputs of the model.
-Contrary to what the name suggests, GENeSYS-MOD can not only be applied at the global level (even though that was the initial application [@loffler_designing_2017]), but instead is purely data-driven and has been successfully used in both macro-regional (e.g. Europe) [@moskalenko_europes_2024], country-level [@hanto_effects_2021], and even regional levels [@herpich_100_2024]. 
+Contrary to what the name suggests, GENeSYS-MOD can not only be applied at the global level (even though that was the initial application [@loffler_designing_2017]), but instead is purely driven by the underlying input data and has been successfully used in both macro-regional (e.g. Europe) [@moskalenko_europes_2024], country-level [@hanto_effects_2021], and even regional levels [@herpich_100_2024]. 
 
 ![Main inputs and outputs of GENeSYS-MOD.\label{fig:inputs_outputs}](GENeSYS-MOD_inputs_outputs.png){width="90%"}
 
 ## Methodological background
 
 In its origin, GENeSYS-MOD is based on the Open Source Enenergy Modelling System (OSeMOSYS), but has been altered and expanded in functionality over time. Nevertheless, the overall structure and nomenclature have been kept as measures to make the model easy to learn and use.
-GENeSYS-MOD optimizes the investment decisions on an annual level for a defined model period, usually given in five-year steps towards 2050 or 2060. It then assumes a planner's perspective with perfect foresight as the default option, however, a myopic approach can also be chosen. The time resolution within a year can be flexibly defined via a timeseries reduction algorithm following @gerbaulet_dynelmod:_2017. This means that depending on the user's computational resources and model setup, almost any time resolution, up to full hourly operation, can be chosen.
+GENeSYS-MOD optimizes the investment decisions on an annual level for a defined model period, usually given in five-year steps towards 2050 or 2060. To do so, it starts with an existing system setup based on historic data (brown-field approach). It then assumes a planner's perspective with perfect foresight as the default option, however, a myopic approach can also be chosen. The time resolution within a year can be flexibly defined via a timeseries reduction algorithm following @gerbaulet_dynelmod:_2017. This means that depending on the user's computational resources and model setup, almost any time resolution, up to full hourly operation, can be chosen.
 
 
 # General framework structure of GENeSYS-MOD version 4
@@ -86,7 +86,7 @@ The overall ecosystem of GENeSYS-MOD has been growing over time and now includes
 
 ## GENeSYS-MOD.data
 
-The GENeSYS-MOD.data repository contains all the individual input parameters for building models, stored in csv files. Python-based scripts enable a filtering, aggregation, and disaggregation of data. The scripts then return standardized input files for the core model. Users can also directly download finished input data files, thus use of these features is optional.
+The GENeSYS-MOD.data repository contains all the individual input parameters for building models, stored in csv files. Python-based scripts enable a filtering, aggregation, and disaggregation of the data. The scripts then return standardized input files for the core model. Users can also directly download finished input data files, thus use of these features is optional.
 
 ## GENeSYS-MOD core model
 
