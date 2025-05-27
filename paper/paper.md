@@ -56,7 +56,7 @@ bibliography: paper.bib
 
 # Summary
 
-GENeSYS-MOD is a flexible framework that allows the modelling of energy systems at various degrees of detail, with a focus on sector coupling and the computation of long-term pathways for the energy system. The generic formulation makes the framework able to be implemented for a wide range of use cases, allowing for a widely user-defined resolution in terms of temporal, spatial, and technological detail. GENeSYS-MOD performs a cost-optimizing investment and dispatch calculation across all modeled subsectors of the energy system (usually covering at least electricity, buildings, industry, and transport). The newest, fourth version of the framework is now available in both GAMS and Julia for the core model, with optional data management tools written in Python. 
+GENeSYS-MOD is a flexible framework that allows the modelling of energy systems at various degrees of detail, with a focus on sector coupling and the computation of long-term pathways for the energy system. The generic formulation makes the framework suitable for a wide range of use cases, allowing for a widely user-defined resolution in terms of temporal, spatial, and technological detail. GENeSYS-MOD performs a cost-optimizing investment and dispatch calculation across all modeled subsectors of the energy system (usually covering at least electricity, buildings, industry, and transport). The newest, fourth version of the framework is now available in both GAMS and Julia for the core model, with optional data management tools written in Python. 
 
 # Statement of need
 
@@ -90,7 +90,7 @@ The GENeSYS-MOD.data repository contains all the individual input parameters for
 
 ## GENeSYS-MOD core model
 
-The core model source code of GENeSYS-MOD is available in both GAMS and Julia, with both versions being maintained side by side. The model also features a dispatch module, aimed at evaluating the electricity supply configuration that GENeSYS-MOD has provided.
+The core model source code of GENeSYS-MOD is available in both GAMS and Julia, with both versions being maintained side by side. The model also features a full hourly dispatch module, aimed at evaluating the electricity supply configuration that GENeSYS-MOD has provided.
 
 ## GENeSYS-MOD.tools
 
@@ -121,7 +121,7 @@ GENeSYS-MOD has been used in a wide range of academic publications and research 
 
 # Perspective
 
-The software and its ecosystem are under constant development and always looking to improve, be it in terms of functionalities, accessibility, or new exciting research opportunities. Therefore, a small community has established itself, with regular online meetings and an annual development workshop. The goal would be to follow great pioneers like the OSeMOSYS community in that regard, like described in @gardumi_development_2018 .
+The software and its ecosystem are under constant development and always looking to improve, be it in terms of functionalities, accessibility, or new exciting research opportunities. Therefore, a small community has established itself, with regular online meetings and an annual development workshop. The goal would be to follow great pioneers like the OSeMOSYS community in that regard, like described in @gardumi_development_2018.
 
 
 # Acknowledgements
