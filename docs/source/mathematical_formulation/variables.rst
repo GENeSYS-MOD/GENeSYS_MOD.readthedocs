@@ -4,25 +4,37 @@ AccumulatedNewCapacity
 ----------------------
 **Sets: [Year,Technology,Region] Unit: [GW]**
 
+Represents the total amount of capacity that was built in previous years and remains operational in the current year. It is defined as the sum of all past new-capacity additions within their defined operational lifetime.
+
 AccumulatedNewStorageCapacity
 -----------------------------
 **Sets: [Storage,Year,Region] Unit: [PJ]**
+
+Represents the total amount of storage capacity that was built in previous years and remains operational in the current year; defined as the sum of all past new-storage-capacity additions within their defined operational lifetime.
 
 AnnualCurtailmentCost
 ---------------------
 **Sets: [Year,Fuel,Region] Unit: [M€]**
 
+The yearly expense assigned to curtailing energy. It is computed by multiplying the curtailed-energy volume in year y by its per-unit curtailment cost factor.
+
 AnnualEmissions
 ---------------
 **Sets: [Year,Emission,Region] Unit: [Mt]**
+
+Total emissions of pollutant in a specific region for one year, defined as the sum of all technology-specific emissions. This aggregated figure is then used to enforce regional and system-wide emission limits.
 
 AnnualFixedOperatingCost
 ------------------------
 **Sets: [Year,Technology,Region] Unit: [M€]**
 
+The annual fixed operating cost for a given technology and location, calculated as the sum of fixed‐cost charges on all capacity still in service (both newly built and existing).
+
 AnnualProductionChangeCost
 --------------------------
 **Sets: [Year,Technology,Region] Unit: [M€]**
+
+The total cost over a year for adjusting a dispatchable generator’s output up or down, computed by summing all increases and decreases in output and multiplying by the per-unit production-change cost.
 
 AnnualSectoralEmissions
 -----------------------
