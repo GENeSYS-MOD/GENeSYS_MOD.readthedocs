@@ -40,49 +40,75 @@ AnnualSectoralEmissions
 -----------------------
 **Sets: [Year,Emission,SECTOR,Region] Unit: [Mt]**
 
+Represents the total emissions of a given pollutant from a specific sector in a particular region and year. It is calculated as the sum of all technology-level emissions assigned to that sector in that region and year, and is used to enforce the annual sectoral emission cap.
+
 AnnualTechnologyEmission
 ------------------------
 **Sets: [Year,Technology,Emission,Region] Unit: [Mt]**
+
+Defined as the total emissions of a given pollutant from a specific technologyy in a particular region and year. 
 
 AnnualTechnologyEmissionByMode
 ------------------------------
 **Sets: [Year,Technology,Emission,Mode of Operation,Region] Unit: [Mt]**
 
+Represents the annual mass of a specific pollutant emitted by a given technology when running in a particular operating mode within a region. It is computed by taking that technology’s total yearly activity in the chosen mode, multiplying by the mode’s fuel‐input ratios, and then applying the pollutant content per unit of each fuel.
+
+.. _annualtechnologyemissionpenaltybyemission:
+
 AnnualTechnologyEmissionPenaltyByEmission
 -----------------------------------------
 **Sets: [Year,Technology,Emission,Region] Unit: [M€]**
+
+The penalty cost assigned to a technology for emitting a particular pollutant in a given year and location, calculated by multiplying its annual emissions of that pollutant by the applicable penalty rate.
 
 AnnualTechnologyEmissionsPenalty
 --------------------------------
 **Sets: [Year,Technology,Region] Unit: [M€]**
 
+:ref:`annualtechnologyemissionpenaltybyemission` summed over all emissions.
+
 AnnualTotalTradeCosts
 ---------------------
 **Sets: [Year,Region] Unit: [M€]**
+
+The total yearly expense for importing fuels into a region, calculated by summing each imported fuel volume (across all routes and timeslices) multiplied by its per-unit trade cost.
 
 AnnualVariableOperatingCost
 ---------------------------
 **Sets: [Year,Technology,Region] Unit: [M€]**
 
+The annual variable operating cost reflects what it costs to run a technology over the year. It takes each mode of operation, multiplies how much the technology was used in that mode by its per-unit running cost, and then adds those figures together.
+
 CapitalInvestment
 -----------------
 **Sets: [Year,Technology,Region] Unit: [M€]**
+
+The total money spent on adding new capacity in a given year and location, calculated by multiplying the per-unit capital cost by the amount of capacity built.
 
 CapitalInvestmentStorage
 ------------------------
 **Sets: [Storage,Year,Region] Unit: [M€]**
 
+The total money spent on adding new storage capacity in a given year and location, calculated by multiplying the per-unit capital cost by the amount of capacity built.
+
 CurtailedCapacity
 -----------------
 **Sets: [Region,Timeslice,Technology,Year] Unit: [GW]**
+
+Represents the portion of installed capacity at a given site and timeslot that remains idle even though it is technically able to operate. In other words, although that capacity could generate energy, it is held back—often because there is more supply than demand, grid limitations, or economic reasons.
 
 CurtailedEnergy
 ---------------
 **Sets: [Year,Timeslice,Fuel,Region] Unit: [PJ]**
 
+Represents the quantity of energy in a single timeslice that was withheld even though capacity was available, calculated by converting each unit of idle capacity into its equivalent energy output.
+
 CurtailedEnergyAnnual
 ---------------------
 **Sets: [Year,Fuel,Region] Unit: [PJ]**
+
+Represents the yearly total of energy not produced despite available capacity, obtained by summing all curtailed-energy values across every timeslice for a given fuel and region.
 
 DemandNeedingReserveMargin
 --------------------------
