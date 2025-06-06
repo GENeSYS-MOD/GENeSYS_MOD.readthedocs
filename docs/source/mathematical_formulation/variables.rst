@@ -114,157 +114,237 @@ DemandNeedingReserveMargin
 --------------------------
 **Sets: [Year,Timeslice,Region] Unit: [PJ]**
 
+Represents, for each time slice and region, the amount of demand that must be backed by generators tagged as reserve-eligible. It is calculated by summing all reserve-capable output (weighted by conversion factors, time-slice shares, and reserve tags) to ensure the required reserve margin is met.
+
 DemandSplitByModalType
 ----------------------
 **Sets: [ModalType,Timeslice,Region,Fuel,Year] Unit: [gpkm/gtkm]**
+
+Denotes the portion of a region’s specified fuel demand allocated to each transport mode and time slice. It is obtained by multiplying the annual demand for that fuel by the mode-specific share and the time-slice profile.
 
 DiscountedAnnualCurtailmentCost
 -------------------------------
 **Sets: [Year,Fuel,Region] Unit: [M€]**
 
+Represents the present‐value cost of energy curtailment in a given year for a specific fuel and region, calculated by taking the undiscounted annual curtailment cost and dividing it by the appropriate discount factor for that year and location.
+
 DiscountedAnnualProductionChangeCost
 ------------------------------------
 **Sets: [Year,Technology,Region] Unit: [M€]**
+
+Reflects the discounted value of all ramp‐up and ramp‐down costs for a particular generation technology in a given region over a year, obtained by applying the technology-specific discount rate to the annual production-change cost.
 
 DiscountedAnnualTotalTradeCosts
 -------------------------------
 **Sets: [Year,Region] Unit: [M€]**
 
+Denotes the present‐value of the total cost of importing fuels into a region during the year, calculated by discounting the sum of its undiscounted annual trade costs by the regional discount rate.
+
 DiscountedCapitalInvestment
 ---------------------------
 **Sets: [Year,Technology,Region] Unit: [M€]**
+
+Represents the discounted total spending on new capacity additions for a given technology and region in a year, found by applying the capital‐cost discount factor to that year’s undiscounted capital investment.
 
 DiscountedCapitalInvestmentStorage
 ----------------------------------
 **Sets: [Storage,Year,Region] Unit: [M€]**
 
+Captures the present‐value of all capital spending on new storage capacity of a particular storage technology in a region and year, computed by dividing the year’s undiscounted storage investment by the region’s discount factor.
+
 DiscountedNewTradeCapacityCosts
 -------------------------------
 **Sets: [Year,Fuel,Region,Region] Unit: [M€]**
+
+Represents the discounted cost of expanding cross‐region trade capacity for a given fuel pair in a particular year, obtained by applying the appropriate discount rate to that year’s undiscounted investment in new trade infrastructure.
 
 DiscountedOperatingCost
 -----------------------
 **Sets: [Year,Technology,Region] Unit: [M€]**
 
+Denotes the present‐value of all variable and fixed operating costs for a given technology in a region over the year, calculated by discounting the sum of its undiscounted annual operating costs.
+
 DiscountedSalvageValue
 ----------------------
 **Sets: [Year,Technology,Region] Unit: [M€]**
+
+Reflects the present‐value benefit of retiring remaining capacity for a particular technology and region in a given year, computed by applying the discount factor to that year’s undiscounted salvage value for the retired capacity.
 
 DiscountedSalvageValueStorage
 -----------------------------
 **Sets: [Storage,Year,Region] Unit: [M€]**
 
+Captures the present‐value of salvaging any remaining storage capacity of a given storage technology in a region during that year, calculated by discounting the undiscounted salvage value by the regional discount rate.
+
 DiscountedSalvageValueTransmission
 ----------------------------------
 **Sets: [Year,Region] Unit: [M€]**
+
+Represents the present‐value gain from retiring transmission assets within a region in a given year, obtained by applying the appropriate discount factor to the undiscounted salvage value of those transmission lines.
 
 DiscountedTechnologyEmissionsPenalty
 ------------------------------------
 **Sets: [Year,Technology,Region] Unit: [M€]**
 
+Denotes the present‐value cost of all emissions penalties incurred by a specific generation technology in a region over the year, calculated by discounting the sum of its emission-based penalties.
+
 Export
 ------
 **Sets: [Year,Timeslice,Fuel,Region,Region] Unit: [PJ]**
+
+Amount of a fuel exported from one region to another in a specific timeslice.
 
 Import
 ------
 **Sets: [Year,Timeslice,Fuel,Region,Region] Unit: [PJ]**
 
+Amount of a given fuel imported into a region from another region during a specific timeslice. The model enforces that exports from Region A to Region B exactly match imports into Region B from Region A, ensuring a balanced trade flow.
+
 ModelPeriodCostByRegion
 -----------------------
 **Sets: [Region] Unit: [M€]**
+
+Represents the cumulative present‐value cost incurred in each region over the entire model period, calculated by summing that region’s :ref:`totaldiscountedcost` across all years.
 
 ModelPeriodEmissions
 --------------------
 **Sets: [Region,Emission] Unit: [Mt]**
 
+Represents the cumulative emissions a pollutant in a specific region over the entire model horizon, including exougenous emissions. It is used to add emission limits overthe entire model period. 
+
 NetTrade
 --------
 **Sets: [Year,Timeslice,Fuel,Region] Unit: [PJ]**
+
+Net trade measures, for each region, fuel, and time slice, the difference between exports (adjusted upward to account for trade losses) and imports into that region. Specifically, every unit exported is multiplied by (1 + loss factor) to reflect the extra amount that had to be shipped out before losses occur, and then imports are subtracted. 
 
 NetTradeAnnual
 --------------
 **Sets: [Year,Fuel,Region] Unit: [PJ]**
 
+Represents the yearly net volume of a specific fuel traded by a region , calculated as the sum of net trade across all time slices. A positive value indicates the region overall sends more fuel out (net exporter), while a negative value means it receives more than it ships (net importer). 
+
 NewCapacity
 -----------
 **Sets: [Year,Technology,Region] Unit: [GW]**
+
+Represents the amount of new generation capacity added in a given year and location, measured in gigawatts.
 
 NewStorageCapacity
 ------------------
 **Sets: [Storage,Year,Region] Unit: [PJ]**
 
+Represents the amount of new generation capacity added in a given year and location, measured in petajoules.
+
 NewTradeCapacity
 ----------------
 **Sets: [Year,Fuel,Region,Region] Unit: [GW]**
+
+Represents the additional inter‐regional transport capacity installed in a given year for moving a specific fuel between two regions, measured in gigawatts.
 
 NewTradeCapacityCosts
 ---------------------
 **Sets: [Year,Fuel,Region,Region] Unit: [M€]**
 
+Represents the annual cost of building additional trade capacity for a fuel between two regions, calculated as the new capacity amount multiplied by the per-unit growth cost and the distance of that trade route.
+
 OperatingCost
 -------------
 **Sets: [Year,Technology,Region] Unit: [M€]**
+
+Represents the total annual expense to run a technology at a location, computed by summing its fixed and variable operating costs.
 
 Production
 ----------
 **Sets: [Year,Timeslice,Fuel,Region] Unit: [PJ]**
 
+Represents the energy output of a given fuel in a particular region during a specific timeslice, calculated by summing each technology’s slice‐level production of that fuel.
+
 ProductionAnnual
 ----------------
 **Sets: [Year,Fuel,Region] Unit: [PJ]**
+
+Denotes the total yearly energy output of a given fuel in a region, obtained by summing all timeslice‐level production values for that fuel across the entire year.
 
 ProductionByTechnology
 ----------------------
 **Sets: [Year,Timeslice,Technology,Fuel,Region] Unit: [PJ]**
 
+Specifies the energy of a particular fuel produced by a single technology in a region during one timeslice, computed by converting the technology’s instantaneous activity (in GW) into PJ using the mode‐specific output ratios and the timeslice’s fraction of the year.
+
 ProductionByTechnologyAnnual
 ----------------------------
 **Sets: [Year,Technology,Fuel,Region] Unit: [PJ]**
+
+Gives the annual total energy of a particular fuel produced by a single technology in a region, calculated as the sum of that technology’s timeslice‐level fuel production (in PJ) over all timeslices in the year.
 
 ProductionDownChangeInTimeslice
 -------------------------------
 **Sets: [Year,Timeslice,Fuel,Technology,Region] Unit: [PJ]**
 
+Measures the decrease in energy production of a given fuel by a specific technology from the previous timeslice to the current one, capturing downward ramping.
+
 ProductionSplitByModalType
 --------------------------
 **Sets: [ModalType,Timeslice,Region,Fuel,Year] Unit: [%]**
+
+Indicates the percentage share of a fuel’s production in a region and timeslice that is allocated to a particular transport mode, determined by tagging each technology‐mode pair and dividing its fuel output by the total fuel production in that slice.
 
 ProductionUpChangeInTimeslice
 -----------------------------
 **Sets: [Year,Timeslice,Fuel,Technology,Region] Unit: [PJ]**
 
+Measures the increase in energy production of a given fuel by a specific technology from the previous timeslice to the current one, capturing upward ramping.
+
+.. _rateofactivity:
+
 RateOfActivity
 --------------
 **Sets: [Year,Timeslice,Technology,Mode of Operation,Region] Unit: [GW]**
+
+Represents the actual power output of a given technology running in a specific mode and region during a single timeslice. The sum of all mode‐specific RateOfActivity values for that technology equals its total available capacity (after applying availability, minus any reserved or curtailed capacity).
 
 RateOfProduction
 ----------------
 **Sets: [Year,Timeslice,Fuel,Region] Unit: [GW]**
 
+Denotes the instantaneous generation rate of a particular fuel in a region during one timeslice, calculated by adding up each technology’s combined mode‐specific production rates for that fuel.
+
 RateOfProductionByTechnology
 ----------------------------
 **Sets: [Year,Timeslice,Technology,Fuel,Region] Unit: [GW]**
+
+Specifies the instantaneous production rate (in GW) of a particular fuel by one technology in a region during a timeslice, obtained by summing that technology’s mode‐specific production rates for the fuel.
 
 RateOfProductionByTechnologyByMode
 ----------------------------------
 **Sets: [Year,Timeslice,Technology,Mode of Operation,Fuel,Region] Unit: [GW]**
 
+Gives the instantaneous production rate (in GW) of a particular fuel by a specific technology operating in one mode and region during a timeslice.
+
 RateOfTotalActivity
 -------------------
 **Sets: [Year,Timeslice,Technology,Region] Unit: [GW]**
+
+Represents the total capacity (in GW) of a technology running in a region during a timeslice, summed across all its operating modes.
 
 RateOfUse
 ---------
 **Sets: [Year,Timeslice,Fuel,Region] Unit: [GW]**
 
+Denotes the instantaneous fuel consumption rate for a given fuel in a region and timeslice, obtained by summing all technologies’ mode‐specific usage rates for that fuel.
+
 RateOfUseByTechnology
 ---------------------
 **Sets: [Year,Timeslice,Technology,Fuel,Region] Unit: [GW]**
 
+Specifies the instantaneous consumption rate of a particular fuel by one technology in a region during a timeslice, calculated by summing that technology’s mode‐specific usage rates for the fuel (including time‐dependent efficiencies).
+
 RateOfUseByTechnologyByMode
 ---------------------------
 **Sets: [Year,Timeslice,Technology,Mode of Operation,Fuel,Region] Unit: [GW]**
+
+Gives the instantaneous consumption rate of a specific fuel by a technology running in a certain mode and region during a timeslice.
 
 RETargetMin
 -----------
@@ -274,13 +354,55 @@ RETotalDemandOfTargetFuelAnnual
 -------------------------------
 **Sets: [Year,Region,Fuel] Unit: [PJ]**
 
+.. _salvagevalue:
+
 SalvageValue
 ------------
 **Sets: [Year,Technology,Region] Unit: [M€]**
 
+Represents the remaining undepreciated value of newly built capacity at the end of the model horizon, for each technology and region. For any unit of capacity added in year y, if its operational lifetime extends beyond the final model year, that leftover portion is considered a “salvage” asset with some resale or secondary‐use value. Two depreciation methods determine how much of the original capital cost survives at the horizon:
+
+- **Annuitized:**
+When a technology’s discount rate is positive and the asset’s full operational life extends past the last model year, the model computes salvage as follows:
+
+.. math::
+
+    {\small
+    SalvageValue_{y,t,r} 
+    = \; CapitalCost_{r,t,y}\;\cdot\;  NewCapacity_{y,t,r} 
+      \;\left(\,
+        1 \;-\; 
+        \frac{ 
+          \bigl(1 + DiscountRate_{r,t}\bigr)^{\,\bigl(\max(\mathcal{Y}) - y + 1\bigr)} \;-\; 1 
+        }{ 
+          \bigl(1 + DiscountRate_{r,t}\bigr)^{\,\bigl(OperationalLife_t\bigr)} \;-\; 1 
+        }
+      \right)
+    }
+
+- **DStraight‐Line:**
+If a technology’s discount rate is zero (so Method 1 would divide by zero) the salvage calculation falls back to straight‐line depreciation:
+
+.. math::
+
+    {\small
+    SalvageValue_{y,t,r} 
+    = \; CapitalCost_{r,t,y}\;\cdot\;  NewCapacity_{y,t,r} 
+      \;\left(\,
+        1 \;-\; 
+        \frac{ 
+          \bigl(\max(\mathcal{Y}) - y + 1\bigr)
+        }{ 
+          \bigl(OperationalLife_{t}\bigr)
+        }
+      \right)
+    }
+
 SalvageValueStorage
 -------------------
 **Sets: [Storage,Year,Region] Unit: [M€]**
+
+represents the remaining undepreciated value of storage capacity at the end of the model horizon, analogous to how :ref:`salvagevalue` captures undepreciated value for generation technologies.
 
 StorageLevelTSStart
 -------------------
@@ -317,6 +439,8 @@ TotalAnnualTechnologyActivityByMode
 TotalCapacityAnnual
 -------------------
 **Sets: [Year,Technology,Region] Unit: [GW]**
+
+.. _totaldiscountedcost:
 
 TotalDiscountedCost
 -------------------
