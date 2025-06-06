@@ -128,6 +128,8 @@ DiscountedAnnualCurtailmentCost
 
 Represents the present‐value cost of energy curtailment in a given year for a specific fuel and region, calculated by taking the undiscounted annual curtailment cost and dividing it by the appropriate discount factor for that year and location.
 
+.. _discountedannualproductionchangecost:
+
 DiscountedAnnualProductionChangeCost
 ------------------------------------
 **Sets: [Year,Technology,Region] Unit: [M€]**
@@ -140,11 +142,16 @@ DiscountedAnnualTotalTradeCosts
 
 Denotes the present‐value of the total cost of importing fuels into a region during the year, calculated by discounting the sum of its undiscounted annual trade costs by the regional discount rate.
 
+.. _discountedcapitalinvestment:
+
 DiscountedCapitalInvestment
 ---------------------------
 **Sets: [Year,Technology,Region] Unit: [M€]**
 
 Represents the discounted total spending on new capacity additions for a given technology and region in a year, found by applying the capital‐cost discount factor to that year’s undiscounted capital investment.
+
+
+.. _discountedcapitalinvestmentstorage:
 
 DiscountedCapitalInvestmentStorage
 ----------------------------------
@@ -158,11 +165,15 @@ DiscountedNewTradeCapacityCosts
 
 Represents the discounted cost of expanding cross‐region trade capacity for a given fuel pair in a particular year, obtained by applying the appropriate discount rate to that year’s undiscounted investment in new trade infrastructure.
 
+.. _discountedoperatingcost:
+
 DiscountedOperatingCost
 -----------------------
 **Sets: [Year,Technology,Region] Unit: [M€]**
 
 Denotes the present‐value of all variable and fixed operating costs for a given technology in a region over the year, calculated by discounting the sum of its undiscounted annual operating costs.
+
+.. _discountedsalvagevalue:
 
 DiscountedSalvageValue
 ----------------------
@@ -181,6 +192,8 @@ DiscountedSalvageValueTransmission
 **Sets: [Year,Region] Unit: [M€]**
 
 Represents the present‐value gain from retiring transmission assets within a region in a given year, obtained by applying the appropriate discount factor to the undiscounted salvage value of those transmission lines.
+
+.. _discountedtechnologyemissionspenalty:
 
 DiscountedTechnologyEmissionsPenalty
 ------------------------------------
@@ -380,7 +393,7 @@ When a technology’s discount rate is positive and the asset’s full operation
       \right)
     }
 
-- **DStraight‐Line:**
+- **Straight‐Line:**
 If a technology’s discount rate is zero (so Method 1 would divide by zero) the salvage calculation falls back to straight‐line depreciation:
 
 .. math::
@@ -402,43 +415,61 @@ SalvageValueStorage
 -------------------
 **Sets: [Storage,Year,Region] Unit: [M€]**
 
-represents the remaining undepreciated value of storage capacity at the end of the model horizon, analogous to how :ref:`salvagevalue` captures undepreciated value for generation technologies.
+Represents the remaining undepreciated value of storage capacity at the end of the model horizon, analogous to how :ref:`salvagevalue` captures undepreciated value for generation technologies.
 
 StorageLevelTSStart
 -------------------
 **Sets: [Storage,Year,Timeslice,Region] Unit: [PJ]**
 
+Represents the state-of-charge at the beginning of each timeslice for a given storage asset in a region. For any slice beyond the first, it equals the previous slice’s start level plus the net charging minus discharging, all scaled by the timeslice fraction. For the first slice, it is initialized from the year-start level. It is also constrained not to exceed the sum of available storage capacity.
+
 StorageLevelYearFinish
 ----------------------
 **Sets: [Storage,Year,Region] Unit: [PJ]**
+
+The state-of-charge at the end of each year for a given storage asset and region, which by construction equals the level at the start of the same year (ensuring a cyclical, year-to-year accounting of stored energy).
 
 StorageLevelYearStart
 ---------------------
 **Sets: [Storage,Year,Region] Unit: [PJ]**
 
+The state-of-charge at the beginning of each year for a storage asset and region, which must lie between storage-specific upper and lower bounds based on available capacity and residual inventory.
+
 StorageLowerLimit
 -----------------
 **Sets: [Storage,Year,Region] Unit: [PJ]**
+
+Defines the minimum allowable storage level for each asset, year, and region, set as a fixed fraction of total available storage capacity to ensure a required minimum reserve of stored energy.
 
 StorageUpperLimit
 -----------------
 **Sets: [Storage,Year,Region] Unit: [PJ]**
 
+Defines the maximum allowable storage level for each asset, year, and region expressed as a fraction of total available storage capacity so that storage holdings cannot exceed physical capacity.
+
 TotalActivityInReserveMargin
 ----------------------------
 **Sets: [Region,Year,Timeslice] Unit: [GW]**
+
+Represents, for each region and timeslice, the total energy‐equivalent output from all generators that qualify as reserve‐eligible. It is calculated by summing each technology’s slice‐level generation only for those technologies and fuels tagged to provide reserves, thereby measuring the amount of capacity available to meet the reserve‐margin requirement.
 
 TotalActivityPerYear
 --------------------
 **Sets: [Region,Timeslice,Technology,Year] Unit: [PJ]**
 
+Represents the total potential energy a technology could generate in a region during a specific timeslice and year.
+
 TotalAnnualTechnologyActivityByMode
 -----------------------------------
 **Sets: [Year,Technology,Mode of Operation,Region] Unit: [PJ]**
 
+Denotes the actual annual energy output of a given technology in a particular operating mode and region, obtained by summing its activity over all timeslices in the year.
+
 TotalCapacityAnnual
 -------------------
 **Sets: [Year,Technology,Region] Unit: [GW]**
+
+Denotes the total available capacity of a given technology in a region during a year, calculated as the sum of its residual capacity and the accumulated new capacity still within its operational life.
 
 .. _totaldiscountedcost:
 
@@ -446,29 +477,61 @@ TotalDiscountedCost
 -------------------
 **Sets: [Year,Region] Unit: [M€]**
 
+Represents the overall net present‐value expenditure for a region in a specific year, obtained by summing:
+
+- :ref:`totaldiscountedcostbytechnology` across all technologies
+
+- :ref:`totaldiscountedstoragecost` across all storage assets.
+
+.. _totaldiscountedcostbytechnology:
+
 TotalDiscountedCostByTechnology
 -------------------------------
 **Sets: [Year,Technology,Region] Unit: [M€]**
+
+Represents the net present‐value cost of operating and investing in a specific technology and region during a given year. It is calculated as the sum of:
+
+- :ref:`discountedoperatingcost` (annual fixed + variable operating costs)
+
+- :ref:`discountedcapitalinvestment` (new capacity expenditure)
+
+- :ref:`discountedtechnologyemissionspenalty` (emissions fines)
+
+- :ref:`discountedannualproductionchangecost` (ramp‐up/ramp‐down costs)
+
+minus :ref:`discountedsalvagevalue` (residual value recovered at horizon).
+
+.. _totaldiscountedstoragecost:
 
 TotalDiscountedStorageCost
 --------------------------
 **Sets: [Storage,Year,Region] Unit: [M€]**
 
+Denotes the net present‐value cost of adding and operating storage capacity in a region during a given year. It equals the :ref:`discountedcapitalinvestmentstorage` minus the :ref:`discountedsalvagevalue` of that storage at the end of the model horizon.
+
 TotalREProductionAnnual
 -----------------------
 **Sets: [Year,Region,Fuel] Unit: [PJ]**
+
+Represents the total annual energy output (in PJ) from all renewable technologies producing a given fuel in a region and year. It is used to enforce both minimum renewable‐production targets and year‐to‐year growth paths based on specified demand ratios.
 
 TotalTechnologyAnnualActivity
 -----------------------------
 **Sets: [Year,Technology,Region] Unit: [PJ]**
 
+Represents the total annual energy output of a given technology in a region and year, calculated by summing its annual production across all fuels.
+
 TotalTechnologyModelPeriodActivity
 ----------------------------------
 **Sets: [Technology,Region] Unit: [PJ]**
 
+Represents the  sum of a technology’s annual output over the entire model horizon. It is then subject to any model‐period upper or lower activity limits. 
+
 TotalTradeCapacity
 ------------------
 **Sets: [Year,Fuel,Region,Region] Unit: [GW/PJ]**
+
+Represents the total available transport capacity for a specific fuel between two regions in a given year. It equals the preset trade capacity plus any newly added and commissioned trade capacity that comes online that year.
 
 TotalTradeCosts
 ---------------
@@ -478,17 +541,25 @@ Use
 ---
 **Sets: [Year,Timeslice,Fuel,Region] Unit: [PJ]**
 
+Represents the total energy consumption of a given fuel in a region during a specific timeslice.
+
 UseAnnual
 ---------
 **Sets: [Year,Fuel,Region] Unit: [PJ]**
+
+Represents the total annual energy consumption of a given fuel in a region.
 
 UseByTechnology
 ---------------
 **Sets: [Year,Timeslice,Technology,Fuel,Region] Unit: [PJ]**
 
+Represents the energy content of a fuel consumed by a technology per region and timeslice.
+
 UseByTechnologyAnnual
 ---------------------
 **Sets: [Year,Technology,Fuel,Region] Unit: [PJ]**
+
+Represents the total yearly energy of a fuel consumed by a technology in a specific region, calculated by summing the timeslice‐level fuel use (in PJ) across all timeslices.
 
 VariableOperatingCost
 ---------------------
@@ -497,3 +568,13 @@ VariableOperatingCost
 WeightedAnnualEmissions
 -----------------------
 **Sets: [Year,Emission,Region] Unit: [Mt]**
+
+For each region and pollutant, weighted emissions for year y are defined so that they lie halfway between that year’s actual emissions and the next year’s, except in the final year where they simply equal that year’s emissions. This approach ensures that when you integrate (sum) emissions over the multi‐year intervals you approximate the area under a linear interpolation between those two years. 
+
+
+
+
+
+
+
+
