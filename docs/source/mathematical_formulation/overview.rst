@@ -34,4 +34,4 @@ Where :math:`r` is the set of regions, :math:`t` the set of technologies, :math:
 This leads to a cost-optimal system design, while maintaining relevant constraints such as the energy balances (to ensure that supply always meets demand), capacity restrictions (e.g. due to area limitations), emission targets (this can be modeled either as annual limits, an overall budget, an emission price, minimum renewable shares, or a combination), and political constraints (e.g. expansion stops or phase outs of certain technologies).
 
 The following pages give an overview over the :doc:`sets </mathematical_formulation/sets>`, :doc:`parameters </mathematical_formulation/parameters>`, and :doc:`variables </mathematical_formulation/variables>` of GENeSYS-MOD.
-An overview over some key equations will be added in the future.
+An overview over some key equations will be added in the future. Additionally, the `OSeMOSYS documentation  <https://osemosys.readthedocs.io/en/latest/index.html>`_ also provides some additional information on several underlying features that have been carried over from OSeMOSYS to GENeSYS-MOD.
