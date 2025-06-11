@@ -16,8 +16,16 @@ The model covers the sectors electricity, buildings, industry, and transport. It
 
 A main focus of GENeSYS-MOD is to be easily understandable and usable, offering multiple model versions in the GAMS and Julia programming languages, making it available for a wide range of potential users. By offering flexible time aggregation methods, the model can be used on any kind of machine, including PCs and laptops, without the requirement for expensive hardware.
 
+GENeSYS-MOD has been in development since 2016 and is still continuously enhanced and upgraded (see the :doc:`Release Notes </release_notes/release_notes>`). A timeline of these developments and events is shown below.
+
+.. image:: _static/genesysmod_timeline_small.jpg
+    :width: 650
+
+.. centered:: *Timeline of the development and noteworthy events in the history of GENeSYS-MOD.*
+
+
 If you want to learn more about GENeSYS-MOD, the underlying principles and mathematical formulation, look over to :doc:`the mathematical Formulation page </mathematical_formulation/overview>`.
 
-GENeSYS-MOD is published under the :doc:`Apache 2.0 license <license>`, which means that it is completely open source and free to use, redistribute, modify, etc.
+GENeSYS-MOD is published under the :doc:`Apache 2.0 license <license>`, which means that it is completely open source and free to use, redistribute, modify, and of course :doc:`contribute <get_involved>`. :)
 
 Plenty of research has been conducted using GENeSYS-MOD - head over to the :doc:`References <references>` section to see a list of all published works with the framework.
