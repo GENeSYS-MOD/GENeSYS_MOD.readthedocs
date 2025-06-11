@@ -13,16 +13,16 @@ Contents
 --------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: General
 
    Home <self>
    about
-   release_notes
+   /release_notes/release_notes
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: How-To-Guides
 
    how_to_guides/gams/index
@@ -39,7 +39,7 @@ Contents
    mathematical_formulation/variables
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Appendix
 
    references
