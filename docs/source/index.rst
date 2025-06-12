@@ -44,4 +44,5 @@ Contents
 
    references
    get_involved
+   license
    contact
