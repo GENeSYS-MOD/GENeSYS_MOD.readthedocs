@@ -5,5 +5,5 @@ GENeSYS-MOD.gms
    :maxdepth: 2
    :caption: GENeSYS-MOD GAMS Guides
 
-   quick_start/index
+   quick_start/quick_start
    user_guide/index
