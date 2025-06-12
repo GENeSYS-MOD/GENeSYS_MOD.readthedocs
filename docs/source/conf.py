@@ -27,7 +27,7 @@ extensions = [
 # OR
 # You can retrieve your token any other way you want, but of course, please
 # don't commit secrets to git, especially on a public repository
-sphinx_github_changelog_token = 123456
+#sphinx_github_changelog_token = 123456
 
 bibtex_bibfiles = ['references.bib']
 bibtex_default_style = 'plain'
