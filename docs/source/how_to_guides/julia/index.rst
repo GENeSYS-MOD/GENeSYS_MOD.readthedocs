@@ -5,5 +5,5 @@ GENeSYS-MOD.jl
    :maxdepth: 2
    :caption: GENeSYS-MOD Julia Guides
 
-   quick_start/index
+   quick_start/quick-start
    user_guide/index

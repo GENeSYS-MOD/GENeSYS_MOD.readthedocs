@@ -3,11 +3,11 @@
 # -- Project information
 
 project = 'GENeSYS-MOD | The Global Energy System Model'
-copyright = '2024, the GENeSYS-MOD community'
+copyright = '2025, the GENeSYS-MOD community'
 author = 'The GENeSYS-MOD Community'
 
-release = '0.2'
-version = 'V 0.2.0'
+release = '0.3'
+version = 'V 0.3.0'
 
 # -- General configuration
 
@@ -27,7 +27,7 @@ extensions = [
 # OR
 # You can retrieve your token any other way you want, but of course, please
 # don't commit secrets to git, especially on a public repository
-sphinx_github_changelog_token = 123456
+#sphinx_github_changelog_token = 123456
 
 bibtex_bibfiles = ['references.bib']
 bibtex_default_style = 'plain'

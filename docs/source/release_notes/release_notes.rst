@@ -15,6 +15,10 @@ In addition, once there have been official releases on the new GitHub repositori
 
 .. toctree::
    :maxdepth: 1
-   :caption: Release Notes per Repository
+   :caption: Release notes per repository
 
    genesysmod_gms
+   genesysmod_jl
+   genesysmod_data
+   genesysmod_tools
+   genesysmod_readthedocs

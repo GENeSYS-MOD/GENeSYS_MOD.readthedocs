@@ -1,2 +1,0 @@
-GAMS Result Analysis
-====================
