@@ -1,0 +1,33 @@
+name: Error Report
+description: File a report if something isn't working as expected or is described incorrectly in the Readthedocs.
+title: "[ERROR] <your issue title here>"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a mistake in our documentation. Please fill out the details below.
+
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: On which documentation page does the issue exist?
+      placeholder: e.g., Mathematical Formulation - Overview, or a link to the page
+    validations:
+      required: true
+
+  - type: textarea
+    id: error
+    attributes:
+      label: Error description
+      description: What exactly is wrong? How should it be instead, in your opinion?
+      placeholder: Problem description.
+    validations:
+      required: true
+
+  - type: textarea
+    id: other
+    attributes:
+      label: Optional - Other information or screenshots
+      description: Please copy and paste any relevant information or screenshots.
