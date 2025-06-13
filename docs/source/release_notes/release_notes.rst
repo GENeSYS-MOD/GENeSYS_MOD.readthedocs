@@ -21,3 +21,4 @@ In addition, once there have been official releases on the new GitHub repositori
    genesysmod_jl
    genesysmod_data
    genesysmod_tools
+   genesysmod_readthedocs
