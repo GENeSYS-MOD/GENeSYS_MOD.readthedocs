@@ -52,6 +52,11 @@ Year
 Defines the temporal resolution of the model on an annual basis. Each element in the Year set represents one modelled year within the planning horizon (e.g., 2020, 2025, 2030).
 It is used to track all time-dependent variables, such as investments, energy production, demand, emissions, and system costs over time, enabling the model to simulate long-term energy system developments and transitions.
 
+TimeSlice
+----------
+Defines the intra-annual temporal resolution of the model. While input data (e.g., renewable generation profiles or demand) is typically provided in hourly resolution, a timeseries reduction script aggregates this data into a smaller number of representative timeslices to reduce computational complexity.
+The number of timeslices can be configured in the model settings. A higher number of timeslices allows for a more accurate representation of diurnal and seasonal variability in energy demand and supply, especially important for modelling variable renewable energy sources.
+
 Region2
 --------
 Contains the same elements as :ref:`region`, but is used specifically to distinguish between origin and destination regions in inter-regional energy trade or transmission.
