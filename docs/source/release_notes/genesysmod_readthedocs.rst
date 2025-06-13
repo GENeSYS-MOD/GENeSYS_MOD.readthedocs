@@ -1,5 +1,5 @@
-Release Notes - GENeSYS-MOD.jl
-=================================
+Release Notes - GENeSYS-MOD.readthedocs
+=======================================
 
 
 .. changelog::
