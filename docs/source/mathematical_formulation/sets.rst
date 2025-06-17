@@ -12,7 +12,7 @@ It enables the model to capture region-specific demand, supply, costs, emissions
 
 The list of regions usually includes a "World" region which provides generic data for some parameters, that is used by the model if no region specific data is defined. However, this "World" region is only used in the pre-processing phase of the model run and then excluded from the actual computation.
 
-The aliases for region are r and rr (if multiple regions are needed, see also :ref:`region2`), while r_full and rr_full mark the full list of regions prior to eventual filtering (e.g. before removal of the "World" region).
+**Aliases:** The aliases for region are r and rr (if multiple regions are needed, see also :ref:`region2`), while r_full and rr_full mark the full list of regions prior to eventual filtering (e.g. before removal of the "World" region).
 
 **Naming convention:** The name of regions usually includes the country ISO2 code (e.g. "DE","NO","FR",...) and then potentially sub-regions separated by a "_" (e.g. "DE_BE","NO_1",...). *The macro-regions currently do not have a naming convention.*
 
@@ -29,7 +29,7 @@ Typically these types of technologies are included:
 - Energy conversion
 - Resource supply
 
-The alias for the Technology set is t.
+**Aliases:** The alias for the Technology set is t.
 
 **Naming convention:** The technologies in GENeSYS-MOD are each given a prefix dependent on their sector. Below is a list of the prefixes of different technologies:
 
@@ -44,19 +44,23 @@ Defines all energy storages. Storages are separate entities from Technologies an
 
 .. centered:: *Set-up of grid-level storage technologies via dummy technologies.*
 
-The alias for the Storage set is s.
+**Aliases:** The alias for the Storage set is s.
 
 **Naming convention:** Storages have the prefix "S\_" before their name (e.g. "S_Battery_Li-Ion").
 
-Fuel
------
-Defines all inputs (e.g. coal) and outputs (e.g. power) of technologies. 
+Fuel [f/ff]
+-----------
+Defines all inputs and outputs of technologies. This can include either energy carriers (e.g. power or coal), energy procies (e.g. kilometers traveled), or other units (e.g. surface area).
+
+**Aliases:** The alias for the Storage set is f or ff in cases where multiple fuels are used cojointly.
+
+**Naming convention:** Fuels have no clear naming convention, but follow the general rule of containing the respective names (e.g. Power, H2, Mobility_Passenger,...).
 
 Mode of Operation [m]
 ---------------------
 Defines the number of different modes of operations for technologies. The  gives a structure to represent multiple input-output combinations for technologies (e.g. fuel switching): for example a gas power plant could use either natural gas in mode of operation 1 and biogas in mode of operation 2.
 
-The alias for the Mode of Operation set is m.
+**Aliases:** The alias for the Mode of Operation set is m.
 
 **Naming convention:** Modes of operation are simply numbered (e.g. 1,2,3,4). At the moment, GENeSYS-MOD includes up to four modes of operation.
 
@@ -64,7 +68,7 @@ Emission [e]
 ------------
 Defines the types of emissions tracked within the model's framework (e.g. CO\ :sub:`2`).
 
-The alias for the Emission set is e.
+**Aliases:** The alias for the Emission set is e.
 
 **Naming convention:** Currently, only CO\ :sub:`2` is modeled within GENeSYS-MOD.
 
@@ -83,6 +87,6 @@ It is used to track all time-dependent variables, such as investments, energy pr
 
 .. _region2:
 
-Region2
---------
-Contains the same elements as :ref:`region`, but is used specifically to distinguish between origin and destination regions in inter-regional energy trade or transmission.
+Region2 [rr/rr_full]
+--------------------
+Contains the same elements as :ref:`region`, but is used specifically to distinguish between origin and destination regions in inter-regional energy trade or transmission. This distinct naming of the set Region is only found in data tables and the GENeSYS-MOD.data repository. Within the model, the simple aliases of Region (r/rr) will be used.
