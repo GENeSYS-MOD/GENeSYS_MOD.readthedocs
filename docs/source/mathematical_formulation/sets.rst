@@ -39,6 +39,42 @@ Typically these types of technologies are included:
 
 **Naming convention:** The technologies in GENeSYS-MOD are each given a prefix dependent on their sector. Below is a list of the prefixes of different technologies:
 
++---------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| **Prefix**                      | **Technology Group**                                                                                               |
++=================================+====================================================================================================================+
+| A\_                             | Area / Dummy input source                                                                                          |
++---------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| CHP\_                           | Combined-heat-and-power plants                                                                                     |
++---------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| D\_                             | Storage dummy technologies / grid links                                                                            |
++---------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| FRT\_                           | Freight transport technologies                                                                                     |
++---------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| HB\_                            | Decentral building heat supply technologies (space heat and warm water)                                            |
++---------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| HLI\_                           | Low-temperature industrial process heat (<100°C)                                                                   |
++---------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| HMLI\_                          | Medium-low-temperature industrial process heat (100-400°C)                                                         |
++---------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| HMHI\_                          | Medium-high-temperature industrial process heat (400-1000°C)                                                       |
++---------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| HHI\_                           | High-temperature industrial process heat (>1000°C)                                                                 |
++---------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| HD\_                            | District heat generation technologies                                                                              |
++---------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| Infeasibility\_                 | Infeasibility technologies (to capture lost load)                                                                  |
++---------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| P\_                             | Power generation technologies                                                                                      |
++---------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| PSNG\_                          | Passenger transport technologies                                                                                   |
++---------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| R\_                             | Resource generation technologies                                                                                   |
++---------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| X\_                             | Transformation technologies                                                                                        |
++---------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| Z\_                             | Import / Export technologies                                                                                       |
++---------------------------------+--------------------------------------------------------------------------------------------------------------------+
+
 
 Storage
 --------
@@ -95,30 +131,48 @@ ModalType
 
 .. rubric:: ModalType [mt]
 
-The ModalType set classifies transport-demand into different categories, based on the transport pupose (passenger or freight), the transport medium (road, rail, air, ship), and the fuel or drivetrain (renewable vs. conventional).
+The ModalType set is used to group shares of the total transport demand into different categories or modal types. These are based on the purpose of the transport (passenger or freight transport), the transport medium (road, rail, air, ship), and also to distinguish between conventional and renewable options.
+
+**Aliases:** The alias for the ModalType set is mt.
+
+**Naming convention:** All modal types start with the prefix "MT\_" and are then followed by either "PSNG" or "FRT" depending on their purpose. They can then be further classified by using the transport medium (e.g. "ROAD") and type. A full example for this would be *"MT\_PSNG\_ROAD\_CONV"*, representing the share of road-based passenger transportation by conventional technologies (e.g. combustion-based vehicles).
+
 
 Sector
 -------
 
-.. rubric:: Sector[se]
+.. rubric:: Sector [se]
 
 GEPNeSYS-MOD classifies technologies into different sectors to assign sectoral emission limits and sector specific constraints. Sectors included are typically Power, Industry, Buildings, Transportation, Resources, Storages, Transformation and CHP.
+
+**Aliases:** The alias for the Sector set is se.
+
+**Naming convention:** Sectors are simple descriptions of the respective sectors (e.g. "Power", "Industry", ...).
 
 Year
 -----
 
-.. rubric:: Year[y/yy/y_full/yy_full]
+.. rubric:: Year [y/yy/y_full/yy_full]
 
 Defines the temporal resolution of the model on an annual basis. Each element in the Year set represents one modelled year within the planning horizon (e.g., 2020, 2025, 2030).
 It is used to track all time-dependent variables, such as investments, energy production, demand, emissions, and system costs over time, enabling the model to simulate long-term energy system developments and transitions.
 
+**Aliases:** The aliases for the Year set is y (or yy if multiple years need to be indexed simultaneously). The set y_full / yy_full is used for processing only and includes every year between 1980 and 2100.
+
+**Naming convention:** Years are simple numbers (e.g. 2018,2030,...).
+
 TimeSlice
 ----------
 
-.. rubric:: TimeSlice[l/ll/l_full/ll_full]
+.. rubric:: TimeSlice [l/ll/l_full/ll_full]
 
-Defines the intra-annual temporal resolution of the model. While input data (e.g., renewable generation profiles or demand) is typically provided in hourly resolution, a timeseries reduction script aggregates this data into a smaller number of representative timeslices to reduce computational complexity.
-The number of timeslices can be configured in the model settings. A higher number of timeslices allows for a more accurate representation of diurnal and seasonal variability in energy demand and supply, especially important for modelling variable renewable energy sources.
+Defines the intra-annual temporal resolution of the model. While input data (e.g., renewable generation profiles or demand) is expected to be provided in hourly resolution, a timeseries reduction algorithm (based on `Gerbaulet and Lorenz (2017)  <https://www.diw.de/documents/publikationen/73/diw_01.c.558112.de/diw_datadoc_2017-088.pdf>`_) aggregates this data into a smaller number of consecutive timeslices to reduce computational complexity. There are plans to also include a choice of multiple timeseries reduction methods in the model.
+The number of timeslices can be configured flexibly in the model settings and is taken into the account by the timeseries reduction algorithm. A higher number of timeslices allows for a more accurate representation of diurnal and seasonal variability in energy demand and supply, which is especially important for modelling variable renewable energy sources.
+
+**Aliases:** The aliases for the TimeSlice set is l (or ll if multiple time slices need to be indexed simultaneously). The set l_full / ll_full is used for processing only and includes every hour of the year (always assumes 8760 hours, in case of leap years, the last 24 hours are cut off).
+
+**Naming convention:** The TimeSlice always represents the respective hour of the year (e.g. 8, 81, 154, 8695, ...).
+
 
 .. _region2:
 
