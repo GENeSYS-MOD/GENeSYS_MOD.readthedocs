@@ -499,15 +499,19 @@ TagTechnologyToSector
 
 This binary parameter assigns each technology to a particular sector (e.g., transport, industry, residential). A value of 1 indicates inclusion in that sector, enabling sector-based aggregation, analysis, and application of sector-specific targets or limits.
 
+.. _TechnologyFromStorage:
+
 TechnologyFromStorage 
 -----------------------
-**Connects Storaged to their respective dummy technologies and describes the efficiency of storage discharging. Sets: [Technology, Storage, Mode_of_operation, Year] Unit: [Fraction]**
+**Connects Storages to their respective dummy technologies and describes the efficiency of storage discharging. Sets: [Technology, Storage, Mode_of_operation, Year] Unit: [Fraction]**
 
 This fractional parameter connects storage technologies to their associated discharge dummy technologies, specifying the efficiency of discharging energy from storage. For example, a value of 0.9 means 90% of stored energy is delivered when discharged.
 
+.. _TechnologyToStorage:
+
 TechnologyToStorage 
 --------------------
-**Connects Storaged to their respective dummy technologies and describes the efficiency of storage charging. Sets: [Technology, Storage, Mode_of_operation, Year] Unit: [Fraction]**
+**Connects Storages to their respective dummy technologies and describes the efficiency of storage charging. Sets: [Technology, Storage, Mode_of_operation, Year] Unit: [Fraction]**
 
 This fractional parameter links storage technologies to their charging dummy technologies, defining the efficiency of storing energy. A value of 0.85 means only 85% of input energy is successfully stored, with the rest lost in the charging process.
 
