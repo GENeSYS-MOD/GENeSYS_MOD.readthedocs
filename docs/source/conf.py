@@ -7,7 +7,7 @@ copyright = '2025, the GENeSYS-MOD community'
 author = 'The GENeSYS-MOD Community'
 
 release = '0.3'
-version = 'V 0.3.2'
+version = 'V 0.3.3'
 
 # -- General configuration
 

@@ -36,23 +36,9 @@ This leads to a cost-optimal system design, while maintaining relevant constrain
 The following pages give an overview over the :doc:`sets </mathematical_formulation/sets>`, :doc:`parameters </mathematical_formulation/parameters>`, and :doc:`variables </mathematical_formulation/variables>` of GENeSYS-MOD.
 An overview over some key equations will be added in the future. Additionally, the `OSeMOSYS documentation  <https://osemosys.readthedocs.io/en/latest/index.html>`_ also provides some additional information on several underlying features that have been carried over from OSeMOSYS to GENeSYS-MOD.
 
-Units
------
+**Here, you can find the units used in GENeSYS-MOD, as well as a list of technologies, fuels, etc.**
 
-The following units are being used throughout GENeSYS-MOD:
+.. toctree::
+   :maxdepth: 2
 
-+---------------------+----------------------+------------------+
-| **Type**            | **Unit**             | **Abbreviation** |
-+=====================+======================+==================+
-| Capacity            | Gigawatt             | GW               |
-+---------------------+----------------------+------------------+
-| Energy              | Petajoule            | PJ               |
-+---------------------+----------------------+------------------+
-| Passenger transport | Billion kilometers   | gpkm             |
-+---------------------+----------------------+------------------+
-| Freight transport   | Billion kilometers   | gpkm             |
-+---------------------+----------------------+------------------+
-| Monetary units      | Million Euro         | M€               |
-+---------------------+----------------------+------------------+
-| Emissions (CO₂)     | Megatonnes           | Mt               |
-+---------------------+----------------------+------------------+
+   units_and_data
