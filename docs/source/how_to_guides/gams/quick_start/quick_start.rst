@@ -90,6 +90,25 @@ Some noteworthy examples to play around with:
 Result analysis
 ---------------
 
+Once you have started the computation, depending on your solver and hardware, the default settings should produce results in about 3-8 minutes. If everything worked properly, GAMS should display a ``Status: Normal completion`` with your solver reporting ``LP status: optimal``. If this is not the case, please check and verify your downloaded files (both in terms of model, but also in terms of data).
+
+In the case that you got the ``Normal completion`` in GAMS, you should expect the following results:
+
++------------------------+------------------------------------------------------------------------------+---------------------+
+|Name                    |Variable                                                                      |Value                |
++========================+==============================================================================+=====================+
+|Objective value         |z                                                                             |37531059.022         |
++------------------------+------------------------------------------------------------------------------+---------------------+
+|Installed Capacity      |TotalCapacityAnnual('2040','P_Coal_Hardcoal','Gondor')                        |4.1811               |
++------------------------+------------------------------------------------------------------------------+---------------------+
+|Generation              |ProductionByTechnologyAnnual('2050','P_PV_Utility_Opt','Power','Rohan')       |270.615              |
++------------------------+------------------------------------------------------------------------------+---------------------+
+|Net Exports             |NetTradeAnnual('2030','Power','DolAmroth')                                    |53.0492              |
++------------------------+------------------------------------------------------------------------------+---------------------+
+
+You can compare these values by either using the generated .gdx file (see above), or by using the results in .csv or .xlsx format. We are currently working on some ready-to-use dashboards in Julia to visualize the results.
+Otherwise, `Tableau Desktop: Public Edition  <https://www.tableau.com/products/public>`_ is also a great tool to use for visualizations. A guide on how to generate some visualizations for GENeSYS-MOD with Tableau Public will be added to this readthedocs in the near future.
+
 Further information
 -------------------
 
