@@ -19,6 +19,7 @@ The list of regions usually includes a "World" region which provides generic dat
 
 **Naming convention:** The name of regions usually includes the country ISO2 code (e.g. "DE","NO","FR",...) and then potentially sub-regions separated by a "_" (e.g. "DE_BE","NO_1",...). *The macro-regions currently do not have a naming convention.*
 
+.. _technology:
 
 Technology
 -----------
