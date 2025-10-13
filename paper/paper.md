@@ -18,7 +18,7 @@ authors:
   - name: Julian Bornemann
     affiliation: 1
   - name: Alena Diesing
-	affiliation: 1
+    affiliation: 1
   - name: Karlo Hainsch
     affiliation: 1
   - name: Jonathan Hanto
@@ -28,14 +28,14 @@ authors:
   - name: Nikita Moskalenko
     affiliation: 1
   - name: Martha Pedersen
-	affiliation: 3
+    affiliation: 3
   - name: Dimitri Pinel
     affiliation: 3
   - name: Dana Reulein
     affiliation: 5
   - name: Shweta Tiwari
     affiliation: 3
-	
+
 affiliations:
   - name: Technische Universität Berlin, Workgroup for Infrastructure Policy (WIP), Straße des 17. Juni 135, 10623 Berlin, Germany
     index: 1
@@ -47,8 +47,8 @@ affiliations:
     index: 4
   - name: Norwegian University of Science and Technology, Department of Electric Energy (IEL), O. S. Bragstads plass 2E, 7491 Trondheim, Norway
     index: 5
-	
-	
+
+
 date: 22 May 2025
 bibliography: paper.bib
 
