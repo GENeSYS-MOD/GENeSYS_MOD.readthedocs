@@ -112,4 +112,4 @@ Otherwise, `Tableau Desktop: Public Edition  <https://www.tableau.com/products/p
 Further information
 -------------------
 
-For a full list of options (frequently called switches in GENeSYS-MOD), please refer to the full user guide. For more information on the inputs and outputs of GENeSYS-MOD, as well as the structure, please refer to the mathematical formulation.
+For a full list of options (frequently called switches in GENeSYS-MOD), please refer to the :doc:`full user guide </how_to_guides/gams/user_guide/index>`. For more information on the inputs and outputs of GENeSYS-MOD, as well as the structure, please refer to the :doc:`mathematical formulation </mathematical_formulation/overview>`.
