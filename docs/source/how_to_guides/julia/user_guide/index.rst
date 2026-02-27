@@ -5,3 +5,4 @@ Julia User Guide
    :maxdepth: 2
 
    switches
+   local_develop
