@@ -108,6 +108,7 @@ Encompassing all the other tools and the core model, the documentation is now pr
 ![Functionality additions of major GENeSYS-MOD versions.\label{fig:version_blocks}](genesysmod_blocks_v4.pdf)
 
 With version 4.0, the main focus was on the removal of entry barriers (in the form of commercial license requirements), improving data transparency, and making the framework easier to use. This has been tackled by various additions:
+
 1. **Creation of a new GitHub organization:**  previously, development of GENeSYS-MOD happened at a closed GitLab instance, hosted by TU Berlin, with one public repository that faced outwards. With the new structure, all development now happens in the new public GitHub repositories.
 2. **Implementation of GENeSYS-MOD in Julia:** as stated above, GENeSYS-MOD used to be only available in GAMS, requiring a license which provides a cost barrier to prospective users. By offering a Julia implementation, the model can be used by a wider audience without any entry barriers.
 3. **Fully open data repository:** in the past, completed data sets, usually accompanying a publication, would be uploaded to Zenodo. Now, instead, all raw input data is stored in a public repository, including individual sources of all data points, making the data more transparent and easier to use for other (e.g. regional) applications. The repository also comes with useful scripts for filtering and aggregation methods.
