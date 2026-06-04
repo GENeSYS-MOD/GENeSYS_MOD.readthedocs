@@ -493,11 +493,35 @@ TagTechnologyToModalType
 
 This binary parameter tags each technology as belonging to a specific modal type (e.g., road, rail, shipping). A value of 1 indicates the technology is part of that mode, allowing the model to group and apply constraints or policies (such as efficiency targets or mode-specific emissions) to all technologies within that type.
 
-TagTechnologyToSector 
+TagTechnologyToSector
 -----------------------
 **Assigns Technologies to the different sectors. Sets: [Technology, Sector] Unit: [Binary]**
 
 This binary parameter assigns each technology to a particular sector (e.g., transport, industry, residential). A value of 1 indicates inclusion in that sector, enabling sector-based aggregation, analysis, and application of sector-specific targets or limits.
+
+.. _tagfueltosubsets:
+
+TagFuelToSubsets
+-----------------
+**Groups fuels under named subsets. Sets: [Fuel, Subset] Unit: [Binary]**
+
+Maps each fuel to one or more user-defined subsets (e.g., ``HeatFuels``, ``TransportFuels``, ``GasFuels``). A value of 1 includes the fuel in the subset; entries with 0 (or no row at all) are excluded. The subsets are then available wherever the model groups behaviour by fuel family — most prominently in result aggregation and in sector-coupling sanity checks.
+
+.. _tagtechnologytosubsets:
+
+TagTechnologyToSubsets
+------------------------
+**Groups technologies under named subsets. Sets: [Technology, Subset] Unit: [Binary]**
+
+Maps each technology to one or more user-defined subsets (e.g., ``Solar``, ``Wind``, ``Renewables``, ``CHP``, ``EGS``, ``CCS``, ``FossilPower``, ``DummyTechnology``). A value of 1 includes the technology in the subset. The subsets drive default-tagging of dummy techs, aggregated reporting, and group constraints such as :ref:`grouptotalannualmaxcapacity` and :ref:`grouptotalannualmincapacity`.
+
+.. _tagregiontosubsets:
+
+TagRegionToSubsets
+--------------------
+**Groups regions under named subsets. Sets: [Region, Subset] Unit: [Binary]**
+
+Maps each region to one or more user-defined region subsets (e.g., ``USA`` containing all US ISOs, ``EU`` containing every European member region). A value of 1 includes the region in the subset. The subsets are referenced by the group-capacity parameters :ref:`grouptotalannualmaxcapacity` / :ref:`grouptotalannualmincapacity` so that aggregated bounds (such as a single total-solar cap across all US ISOs) can be expressed without listing every region individually. The subset is also available for any custom post-processing that aggregates results by macro-region.
 
 .. _TechnologyFromStorage:
 
@@ -531,13 +555,31 @@ Total Annual max capacity represents the maximum amount of capacity that can be 
 
 This parameter can also be used to constrain capacity when necessary, ensuring that the model's early years remain within specific limits. For instance, if political plans require that capacity does not exceed a certain threshold in a given year (e.g., 2025), this parameter can be applied to restrict capacity expansion accordingly. However, users should apply this constraint cautiously, as it may prevent the model from selecting the most cost-effective solutions. It should only be used when necessary to enhance the model's realism.
 
-TotalAnnualMinCapacity 
+TotalAnnualMinCapacity
 -------------------------
 **Minimum total (residual and new) capacity each year. Sets: [Region, Technology, Year] Unit: [GW]**
 
 Using the Parameter TotalAnnualMinCapacity, the minimum total capacity (residual and new capacity!) each year can be specified. This can be used to implement policy plans and include commissioned capacity.
 
-TradeCapacity 
+.. _grouptotalannualmaxcapacity:
+
+GroupTotalAnnualMaxCapacity
+-----------------------------
+**Maximum total (residual and new) capacity summed over a technology subset and region subset, each year. Sets: [TechnologySubset, RegionSubset, Year] Unit: [GW]**
+
+Same idea as :ref:`TotalAnnualMaxCapacity <totalannualmaxactivity>` but aggregated: the sum of ``TotalCapacityAnnual`` over every technology in the chosen :ref:`TagTechnologyToSubsets <tagtechnologytosubsets>` entry **and** every region in the chosen :ref:`TagRegionToSubsets <tagregiontosubsets>` entry must not exceed the supplied value in the given year. Typical use case: a single nation-wide cap (e.g. *all solar in USA* ≤ 300 GW in 2030) without having to write per-region per-technology rows.
+
+A sentinel value of 999999 disables the constraint for that (subset, subset, year) cell; the parameter therefore defaults to "no limit" when the data sheet is empty. Both subsets must have at least one resolved member in the active model; otherwise the constraint is silently skipped.
+
+.. _grouptotalannualmincapacity:
+
+GroupTotalAnnualMinCapacity
+-----------------------------
+**Minimum total (residual and new) capacity summed over a technology subset and region subset, each year. Sets: [TechnologySubset, RegionSubset, Year] Unit: [GW]**
+
+Mirror of :ref:`grouptotalannualmaxcapacity`. The sum of ``TotalCapacityAnnual`` over the resolved (TechnologySubset, RegionSubset) members must be at least the supplied value in the given year. A value of 0 (or a missing row) is inert. Useful for expressing a national or super-regional capacity target (e.g. *at least 116 GW of nuclear across the USA in 2035*) that the optimiser can satisfy with any per-region allocation it likes.
+
+TradeCapacity
 --------------
 **Defines the capacities for trade between two regions in a specific year and for a specific fuel. Sets: [Region, Region.1, Fuel, Year] Unit: [GW]/[PJ]**
 
