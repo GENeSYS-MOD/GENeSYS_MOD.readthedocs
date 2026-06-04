@@ -69,30 +69,26 @@ The list below provides a list of all available settings / switches for GENeSYS-
      -
      -
      -
-   * - switch_test_data_load
-     - *[0,1]*
-     - 0
-     - If enabled, the code will just perform a test loading of all data and terminate before the equations are constructed
-   * - switch_only_load_gdx
-     - *[0,1]*
-     - 0
-     - If enabled, the model will just read in the data in .gdx format and not attempt to read from the Excel file
-   * - switch_unixPath
-     - *[0,1]*
-     - 0
-     - Determines the structure of the directory paths. Needs to be 1 for Unix-based systems (e.g. Mac OS, Linux) and 0 for Windows
-   * - switch_read_data_long
+   * - switch_raw_results
+     - *[NoRawResult, CSVResult, TXTResult, TXTandCSV]*
+     - NoRawResult()
+     - Selects the writer for raw JuMP-variable dumps (variable, value, axes). ``NoRawResult()`` skips raw writing; the other options pick the file format
+   * - switch_processed_results
      - *[0,1]*
      - 1
-     - Determines the data structure, the codes assumes to read. 1 assumes tables in long format, 0 assumes tables in wide format
-   * - switch_write_output
-     - *[gdx,csv,xls]*
-     - gdx
-     - Type of output files to be created. For single runs, csv or xls is recommended. If multiple runs should be compared, using .gdx and then merging it with the script in the results folder is recommended
-   * - switch_only_write_results
+     - Enables the processed-result writers (annual production, capacity, emissions, levelised costs etc.) — i.e. the human-readable CSVs the analysis scripts consume
+   * - write_reduced_timeserie
+     - *[0,1]*
+     - 1
+     - Writes the post-reduction timeseries (CapacityFactor, SpecifiedDemandProfile, etc.) to an Excel file so that subsequent runs can reuse it
+   * - load_reduced_timeserie
      - *[0,1]*
      - 0
-     - Reads in a result gdx file and outputs the results as e.g. xls without re-computation
+     - If 1, skips the (non-convex) timeseries-reduction NLP and reads a previously written reduced timeseries from disk. Useful when comparing two model versions on the same TS
+   * - switch_LCOE_calc
+     - *[0,1]*
+     - 0
+     - Computes per-technology levelised cost of electricity in the post-processing
    * - **Technical settings**
      -
      -
@@ -125,6 +121,10 @@ The list below provides a list of all available settings / switches for GENeSYS-
      - *[0,1]*
      - 0
      - Enables / disables a slack for the base year calibration. Only enable for debugging
+   * - switch_iis
+     - *[0,1]*
+     - 1
+     - On infeasibility, request the solver to compute the Irreducible Infeasible Set and write it to ``IIS_<step>_<date>.txt`` in the result directory. When 0, the run errors out without an IIS file
    * - **Features / functionality options**
      -
      -
@@ -137,18 +137,10 @@ The list below provides a list of all available settings / switches for GENeSYS-
      - *[0,1]*
      - 0
      - Enables / disables ramping requirements for technologies
-   * - switch_short_term_storage
-     - *[0,1]*
-     - 1
-     - Chooses the kind of storage formulation. For elmod-timeseries, 1 is required
-   * - switch_all_regions
-     - *[0,1]*
-     - 1
-     - If set to 1, the model will consider all regions, if set to 0, only the first 4-5 regions will be considered. This is for testing purposes only
-   * - switch_aggregate_region
+   * - switch_reserve
      - *[0,1]*
      - 0
-     - If set to 1, the model will aggregate all regions into one single region. For calibration purposes only
+     - Enables / disables the reserve-margin constraint (additional dispatchable capacity beyond peak demand). Independent of the peaking-capacity block below
    * - switch_intertemporal
      - *[0,1]*
      - 0
@@ -169,14 +161,14 @@ The list below provides a list of all available settings / switches for GENeSYS-
      - *[share,0-1]*
      - 0.75
      - The upper bound for the start-level of the storage at the beginning of the year
-   * - set_storagelevelstart_low
+   * - set_storagelevelstart_down
      - *[share,0-1]*
      - 0.25
      - The lower bound for the start-level of the storage at the beginning of the year
-   * - switch_e2pratio_deviationfactor
+   * - E2P_ratio_deviation_factor
      - *[float]*
      - 2
-     - The maximum deviation from the defined E2P-ratio of storages
+     - The maximum deviation factor from the technology-defined storage E2P-ratio
    * - **Peaking constraint options**
      -
      -
@@ -223,9 +215,13 @@ The list below provides a list of all available settings / switches for GENeSYS-
      -
    * - switch_employment_calculation
      - *[0,1]*
-     - 1
-     - Enables / disables the employment module
-   * - eployment_data_file
+     - 0
+     - Enables / disables the (post-processing) employment-effect calculation
+   * - switch_endogenous_employment
+     - *[0,1]*
+     - 0
+     - If 1, the employment effect is added as an endogenous term to the optimisation (significantly increases solve time). If 0, employment is only computed in the post-processing step
+   * - employment_data_file
      - *[string]*
      -
      - Defines the filename of the employment data file

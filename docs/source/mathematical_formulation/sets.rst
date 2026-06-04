@@ -105,12 +105,12 @@ Defines all inputs and outputs of technologies. This can include either energy c
 
 **Naming convention:** Fuels have no clear naming convention, but follow the general rule of containing the respective names (e.g. Power, H2, Mobility_Passenger,...).
 
-Mode of Operation
+ModeOfOperation
 ------------------
 
-.. rubric:: Mode of Operation [m]
+.. rubric:: ModeOfOperation [m]
 
-Defines the number of different modes of operations for technologies. The  gives a structure to represent multiple input-output combinations for technologies (e.g. fuel switching): for example a gas power plant could use either natural gas in mode of operation 1 and biogas in mode of operation 2.
+Defines the number of different modes of operations for technologies. The set gives a structure to represent multiple input-output combinations for technologies (e.g. fuel switching): for example a gas power plant could use either natural gas in mode of operation 1 and biogas in mode of operation 2.
 
 **Aliases:** The alias for the Mode of Operation set is m.
 
@@ -183,3 +183,20 @@ Region2
 .. rubric:: Region2 [rr/rr_full]
 
 Contains the same elements as :ref:`region`, but is used specifically to distinguish between origin and destination regions in inter-regional energy trade or transmission. This distinct naming of the set Region is only found in data tables and the GENeSYS-MOD.data repository. Within the model, the simple aliases of Region (r/rr) will be used.
+
+.. _subset:
+
+Subset
+-------
+
+.. rubric:: Subset [used as a label on Region / Technology / Fuel]
+
+A *Subset* is a user-defined named grouping of members of one of the base sets — currently Region, Technology, and Fuel. Subsets are not a standalone set with their own alias; they are declared implicitly via the binary "membership" parameters :ref:`TagRegionToSubsets <tagregiontosubsets>`, :ref:`TagTechnologyToSubsets <tagtechnologytosubsets>`, and :ref:`TagFuelToSubsets <tagfueltosubsets>`. Each row in those tables answers "is element *x* a member of subset *S*?".
+
+Subsets exist so that bookkeeping and constraints can refer to a whole family at once instead of enumerating every member. Examples:
+
+* technology subsets ``Solar``, ``Wind``, ``Renewables``, ``CHP``, ``FossilPower``, ``CCS``, ``EGS`` — drive default-tagging of dummy techs, aggregated reporting, and group constraints such as :ref:`grouptotalannualmaxcapacity` / :ref:`grouptotalannualmincapacity`.
+* fuel subsets ``HeatFuels``, ``TransportFuels``, ``GasFuels`` — used in sector-coupling checks and in result aggregation.
+* region subsets ``Central Europe``, ``EU``, ``MENA`` etc. — let a single group capacity bound or a single reporting row span a whole macro-region without listing every member region.
+
+**Naming convention:** subset names are free-form strings chosen by the user; they only need to be consistent between the membership tables and any parameter that references them.
