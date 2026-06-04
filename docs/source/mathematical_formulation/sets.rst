@@ -105,12 +105,12 @@ Defines all inputs and outputs of technologies. This can include either energy c
 
 **Naming convention:** Fuels have no clear naming convention, but follow the general rule of containing the respective names (e.g. Power, H2, Mobility_Passenger,...).
 
-Mode of Operation
+ModeOfOperation
 ------------------
 
-.. rubric:: Mode of Operation [m]
+.. rubric:: ModeOfOperation [m]
 
-Defines the number of different modes of operations for technologies. The  gives a structure to represent multiple input-output combinations for technologies (e.g. fuel switching): for example a gas power plant could use either natural gas in mode of operation 1 and biogas in mode of operation 2.
+Defines the number of different modes of operations for technologies. The set gives a structure to represent multiple input-output combinations for technologies (e.g. fuel switching): for example a gas power plant could use either natural gas in mode of operation 1 and biogas in mode of operation 2.
 
 **Aliases:** The alias for the Mode of Operation set is m.
 
@@ -197,6 +197,6 @@ Subsets exist so that bookkeeping and constraints can refer to a whole family at
 
 * technology subsets ``Solar``, ``Wind``, ``Renewables``, ``CHP``, ``FossilPower``, ``CCS``, ``EGS`` — drive default-tagging of dummy techs, aggregated reporting, and group constraints such as :ref:`grouptotalannualmaxcapacity` / :ref:`grouptotalannualmincapacity`.
 * fuel subsets ``HeatFuels``, ``TransportFuels``, ``GasFuels`` — used in sector-coupling checks and in result aggregation.
-* region subsets ``USA``, ``EU``, ``MENA`` etc. — let a single group capacity bound or a single reporting row span a whole macro-region without listing every member region.
+* region subsets ``Central Europe``, ``EU``, ``MENA`` etc. — let a single group capacity bound or a single reporting row span a whole macro-region without listing every member region.
 
 **Naming convention:** subset names are free-form strings chosen by the user; they only need to be consistent between the membership tables and any parameter that references them.

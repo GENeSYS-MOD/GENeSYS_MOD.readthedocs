@@ -15,6 +15,18 @@ AnnualExogenousEmission
 
 This parameter allows the user to add exogenous emissions to the model that would otherwise not be captured but are intended to be accounted for in the model setup. These can include emissions from, for example, cement production, international air travel, and agriculture.
 
+AnnualMaxNewCapacity
+---------------------
+**Upper bound on the *new* capacity that may be installed in a single year. Sets: [Region, Technology, Year] Unit: [GW]**
+
+Caps the annual investment in a given technology. Unlike :ref:`TotalAnnualMaxCapacity <totalannualmaxactivity>`, which limits the *total* (residual + new) capacity, this parameter only restricts how much *additional* capacity can come online in that year. Typical use: build-rate constraints (e.g. supply-chain or workforce limits) that prevent unrealistic capacity step-changes.
+
+AnnualMinNewCapacity
+---------------------
+**Lower bound on the *new* capacity that must be installed in a single year. Sets: [Region, Technology, Year] Unit: [GW]**
+
+Mirrors :ref:`AnnualMaxNewCapacity <annualmaxnewcapacity>`_ on the lower side. Used to encode commissioned-but-not-yet-built projects or political deployment pledges expressed as per-year additions.
+
 AnnualSectoralEmissionLimit
 ----------------------------
 **Limits the maximum amount of Emissions for a specific sector and region in a year. Sets: [Emission, Sector, Year] Unit: [Megatonnes]**
@@ -76,6 +88,18 @@ CommissionedTradeCapacity
 
 Commissioned trade capacity will be built by the model; however, other than residual capacity, all costs are accounted for. This feature can primarily be used to implement policy plans and other planned capacity.
 
+DistrictHeatDemand
+-------------------
+**Fraction of the building-heat demand that is supplied via district heating. Sets: [Region, Year] Unit: [Fraction]**
+
+A value between 0 and 1 giving the share of low-temperature building heat that flows through a district-heat network (and is therefore served by CHP, large-scale heat pumps, or other ``Heat_District`` technologies) rather than by individual building-side heating. Used to split the ``Heat_Buildings`` demand into a ``Heat_District`` and a residual local component.
+
+DistrictHeatSplit
+------------------
+**Allocation of the district heat supply across the eligible generation technologies. Sets: [Region, Technology, Year] Unit: [Fraction]**
+
+Per-technology shares (summing to 1 across the technologies that can supply district heat in a region/year) that pre-allocate how much of the district heat demand each technology must cover. Useful when the model should follow a known dispatch hierarchy (e.g. existing waste-to-energy and CHP plants first, then heat pumps).
+
 EmissionActivityRatio
 ----------------------
 **Emissions factor per unit of activity. Sets: [Region, Technology, Mode_of_operation, Emission, Year] Unit: [Fraction]**
@@ -88,8 +112,8 @@ EmissionContentPerFuel
 
 It allows the model to translate fuel consumption into associated emissions by multiplying it with the fuel input used in technologies. For example, hard coal has a value of 0.0939 Mt/PJ, meaning burning 1 PJ of hard coal emits 0.0939 Mt of CO₂.
 
-EmissionPenaltyTagTech
------------------------
+EmissionsPenaltyTagTechnology
+-------------------------------
 **Tags all technologies which produce emissions. Sets: [Technology] Unit: [Binary]**
 
 This is a binary parameter that tags technologies which produce emissions (e.g. CO₂). A value of 1 indicates the technology emits and may be subject to penalties or carbon pricing.
@@ -277,6 +301,12 @@ ModelPeriodExogenousEmission
 
 ModelPeriodExogenousEmission defines the total amount of external (exogenous) emissions—such as from cement, agriculture, or international travel—that are not captured by the modeled technologies but must still be included in the overall emission accounting for the model period. These emissions are added to the model’s total emissions and count against the ModelPeriodEmissionLimit.
 
+NewCapacityExpansionStop
+--------------------------
+**Year from which onwards no further new capacity can be added for a technology in a region. Sets: [Region, Technology] Unit: [Year]**
+
+Hard expansion freeze for a (region, technology) pair: once the modelled year reaches this value, ``NewCapacity`` is forced to zero. Typical use: a coal-phase-out date, a moratorium on new fossil capacity, or simply an end-of-build date for a technology that is being deliberately retired. Set the value to a year after the model horizon (or leave the row out) to keep the technology expandable throughout.
+
 .. _operationallife:
 
 OperationalLife 
@@ -463,65 +493,122 @@ To ensure accuracy, data from official sources must be analyzed to exclude trans
 
 This setup supports sector coupling, allowing the model to select technologies and fuels to best meet the final fuel demands. For the Base Year, regional production data is used to realistically represent the existing energy landscape in the base year.
 
-StorageLevelStart 
+StorageE2PRatio
+----------------
+**Ratio between storage energy capacity (PJ) and discharge power capacity (GW). Sets: [Storage] Unit: [hours]**
+
+A technology-dependent fixed ratio that links the *energy* size of a storage (how many PJ it can hold) to its *power* size (how many GW it can discharge). For example a Li-Ion battery typically has an E2P ratio of 2-4 hours, a pumped-hydro reservoir 8-12 hours, and a long-duration storage 100+ hours. The model uses this to size the storage volume from the dispatch power, so the user only needs to constrain one of the two dimensions.
+
+StorageLevelStart
 ------------------
 **Defines the level of storage at the beginning of a year. Sets: [Region, Storage] Unit: [PJ]**
 
 → Currently not used
 
-TagDemandFuelToSector 
-----------------------
+StorageMaxCapacity
+-------------------
+**Upper bound on the *total* (residual + new) energy capacity of a storage in a region. Sets: [Region, Storage, Year] Unit: [PJ]**
+
+Caps the total energy-storage volume that may exist in a region/year. Used to encode physical site limits (e.g. a single pumped-hydro reservoir's maximum useful head) or policy moratoriums. A sentinel value of 999999 effectively disables the constraint.
+
+.. _tags-overview:
+
+Tags
+-----
+
+Tags are binary parameters (value 0 or 1) whose only job is to link members of one set to another set or to a named :ref:`subset`. They do not carry quantitative information themselves — they answer "does element *x* belong to category *Y*?" — and are consumed by the constraints, reporting routines, and helper logic that need to operate on a whole family at once (e.g. "every renewable technology", "every fuel that can be traded", "every federal state in Germany").
+
+By convention every Tag parameter is named ``Tag<From><To>`` (or ``RETag<...>`` for the renewable-energy-target family). The entries below list every Tag currently consumed by the model.
+
+TagCanFuelBeTraded
+~~~~~~~~~~~~~~~~~~~
+**Marks fuels that can be exchanged between regions. Sets: [Fuel] Unit: [Binary]**
+
+A value of 1 enables the trade machinery (trade variables, trade-cost terms, trade-route checks) for the fuel; a value of 0 keeps the fuel local to each region. Used together with :ref:`traderoute` and :ref:`tradecapacity`.
+
+TagDemandFuelToSector
+~~~~~~~~~~~~~~~~~~~~~~
 **Assigns final demand fuels to the different sectors. Sets: [Fuel, Sector] Unit: [Binary]**
 
 This binary parameter assigns final demand fuels (e.g., electricity, heat, gasoline) to specific sectors such as transport, industry, or buildings. A value of 1 links the fuel to the sector, allowing sector-specific demand tracking and policy application.
 
-TechnologyDiscountRate 
-------------------------
-**Discount Rate for Technologies. Sets: [Region, Technology] Unit: [Fraction]**
+TagDispatchableTechnology
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Marks technologies that are dispatchable (i.e. their output is a decision variable rather than driven by a profile). Sets: [Technology] Unit: [Binary]**
 
-→ Currently not used
+A value of 1 enables the ramping, minimum-running, and production-change-cost constraints for the technology. Variable-renewable technologies (PV, Wind, RoR) are marked 0 so that their dispatch follows the timeseries profile.
 
-TagElectricTechnology 
------------------------
+TagElectricTechnology
+~~~~~~~~~~~~~~~~~~~~~~
 **Indicates if a technology is considered to be "direct electrification". Sets: [Technology] Unit: [Binary]**
 
 A binary indicator that marks whether a technology qualifies as direct electrification (e.g., electric vehicles or electric heating). A value of 1 allows the model to identify and group technologies that directly consume electricity, often for electrification targets or analysis.
 
-TagTechnologyToModalType 
--------------------------
+.. _tagfueltosubsets:
+
+TagFuelToSubsets
+~~~~~~~~~~~~~~~~~
+**Groups fuels under named subsets. Sets: [Fuel, Subset] Unit: [Binary]**
+
+Maps each fuel to one or more user-defined subsets (e.g., ``HeatFuels``, ``TransportFuels``, ``GasFuels``). A value of 1 includes the fuel in the subset; entries with 0 (or no row at all) are excluded. The subsets are then available wherever the model groups behaviour by fuel family — most prominently in result aggregation and in sector-coupling sanity checks.
+
+TagModalTypeToModalGroups
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Groups modal types into broader modal groups (e.g. all passenger road modes into "Road"). Sets: [ModalType, ModalGroup] Unit: [Binary]**
+
+A value of 1 places the modal type into the modal group. Used by the modal-split constraints and by sectoral reporting in transport.
+
+.. _tagregiontosubsets:
+
+TagRegionToSubsets
+~~~~~~~~~~~~~~~~~~~
+**Groups regions under named subsets. Sets: [Region, Subset] Unit: [Binary]**
+
+Maps each region to one or more user-defined region subsets (e.g., ``NorthAmerica`` containing all countries there, ``EU`` containing every European member region). A value of 1 includes the region in the subset. The subsets are referenced by the group-capacity parameters :ref:`grouptotalannualmaxcapacity` / :ref:`grouptotalannualmincapacity` so that aggregated bounds (such as a single total-solar cap across all US ISOs) can be expressed without listing every region individually. The subset is also available for any custom post-processing that aggregates results by macro-region.
+
+TagTechnologyToModalType
+~~~~~~~~~~~~~~~~~~~~~~~~~
 **Tags technologies which belong to a certain modal type. Sets: [Technology, ModalType] Unit: [Binary]**
 
 This binary parameter tags each technology as belonging to a specific modal type (e.g., road, rail, shipping). A value of 1 indicates the technology is part of that mode, allowing the model to group and apply constraints or policies (such as efficiency targets or mode-specific emissions) to all technologies within that type.
 
 TagTechnologyToSector
------------------------
+~~~~~~~~~~~~~~~~~~~~~~
 **Assigns Technologies to the different sectors. Sets: [Technology, Sector] Unit: [Binary]**
 
 This binary parameter assigns each technology to a particular sector (e.g., transport, industry, residential). A value of 1 indicates inclusion in that sector, enabling sector-based aggregation, analysis, and application of sector-specific targets or limits.
 
-.. _tagfueltosubsets:
-
-TagFuelToSubsets
------------------
-**Groups fuels under named subsets. Sets: [Fuel, Subset] Unit: [Binary]**
-
-Maps each fuel to one or more user-defined subsets (e.g., ``HeatFuels``, ``TransportFuels``, ``GasFuels``). A value of 1 includes the fuel in the subset; entries with 0 (or no row at all) are excluded. The subsets are then available wherever the model groups behaviour by fuel family — most prominently in result aggregation and in sector-coupling sanity checks.
-
 .. _tagtechnologytosubsets:
 
 TagTechnologyToSubsets
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 **Groups technologies under named subsets. Sets: [Technology, Subset] Unit: [Binary]**
 
 Maps each technology to one or more user-defined subsets (e.g., ``Solar``, ``Wind``, ``Renewables``, ``CHP``, ``EGS``, ``CCS``, ``FossilPower``, ``DummyTechnology``). A value of 1 includes the technology in the subset. The subsets drive default-tagging of dummy techs, aggregated reporting, and group constraints such as :ref:`grouptotalannualmaxcapacity` and :ref:`grouptotalannualmincapacity`.
 
-.. _tagregiontosubsets:
+TagTimeIndependentFuel
+~~~~~~~~~~~~~~~~~~~~~~~
+**Marks fuels for which demand does not have a sub-annual profile. Sets: [Fuel] Unit: [Binary]**
 
-TagRegionToSubsets
---------------------
-**Groups regions under named subsets. Sets: [Region, Subset] Unit: [Binary]**
+A value of 1 indicates that the fuel's annual demand can be served flexibly across timeslices instead of following a demand profile (which effectively means that the model can choose for itself). Typical use: commodities, where no flow or trade restrictions are assumed (e.g. ``Lignite``, ``HardCoal``) where the timeslice-level distribution is not modelled explicitly.
 
-Maps each region to one or more user-defined region subsets (e.g., ``USA`` containing all US ISOs, ``EU`` containing every European member region). A value of 1 includes the region in the subset. The subsets are referenced by the group-capacity parameters :ref:`grouptotalannualmaxcapacity` / :ref:`grouptotalannualmincapacity` so that aggregated bounds (such as a single total-solar cap across all US ISOs) can be expressed without listing every region individually. The subset is also available for any custom post-processing that aggregates results by macro-region.
+RETagFuel
+~~~~~~~~~~
+**Marks fuels that should be considered for minimum RE share calculations. Sets: [Region, Fuel, Year] Unit: [Binary]**
+
+Used together with :ref:`reminproductiontarget` to express minimum renewable-share targets per region per year. A value of 1 includes the fuel in the renewable-share aggregation (meaning that an RE target will be set for this fuel).
+
+RETagTechnology
+~~~~~~~~~~~~~~~~
+**Marks technologies that count as "renewable" for the renewable-share target. Sets: [Region, Technology, Year] Unit: [Binary]**
+
+Mirror of ``RETagFuel`` on the technology side. A value of 1 includes the technology's output in the renewable-share aggregation.
+
+TechnologyDiscountRate
+------------------------
+**Discount Rate for Technologies. Sets: [Region, Technology] Unit: [Fraction]**
+
+Would allow technology-specific hurdle rates of different technologies. Currently not used (a flat value across all technologies is chosen instead).
 
 .. _TechnologyFromStorage:
 
@@ -539,21 +626,45 @@ TechnologyToStorage
 
 This fractional parameter links storage technologies to their charging dummy technologies, defining the efficiency of storing energy. A value of 0.85 means only 85% of input energy is successfully stored, with the rest lost in the charging process.
 
+TimeDepEfficiency
+------------------
+**Per-timeslice efficiency multiplier for a technology. Sets: [Region, Technology, TimeSlice, Year] Unit: [Fraction]**
+
+Allows the efficiency of a technology (the ratio between its output and its input) to vary across the year — typical use is heat pumps, whose coefficient of performance depends on the ambient temperature and therefore on the season / hour. When supplied, ``TimeDepEfficiency`` overrides the ``InputActivityRatio`` / ``OutputActivityRatio`` based effective efficiency for the technology in that timeslice. Generated upstream from hourly ambient profiles (used for heat pump coefficients of power) by the timeseries-reduction step.
+
 .. _totalannualmaxactivity:
 
-TotalAnnualMaxActivity 
+TotalAnnualMaxActivity
 -----------------------
 **Maximum total activity each year. Sets: [Region, Technology, Year] Unit: [PJ]**
 
 This Parameter is similar to the Parameter TotalAnnualMaxCapacity but is mainly used for Biomass. Biomass potentials are given in PJ, representing the maximum availability each year, effectively creating an upper limit. This is not the demand in Biomass, but the maximal amount available each year.
 
-TotalAnnualMaxCapacity 
+TotalAnnualMinActivity
+-----------------------
+**Minimum total activity each year. Sets: [Region, Technology, Year] Unit: [PJ]**
+
+Mirror of :ref:`TotalAnnualMaxActivity <totalannualmaxactivity>` on the lower side. Useful for forcing must-run dispatch (e.g. existing biomass CHP contracts) or implementing fuel-floor requirements expressed in energy (PJ) rather than GW.
+
+TotalAnnualMaxCapacity
 -----------------------
 **Maximum total (residual and new) capacity each year. Sets: [Region, Technology, Year] Unit: [GW]**
 
-Total Annual max capacity represents the maximum amount of capacity that can be built in a region. This is the upper limit for a technology and could be constrained in reality by, for example, available land in the case of wind onshore or solar pv. It is usually the same value each year as this upper limit does not change. 
+Total Annual max capacity represents the maximum amount of capacity that can be built in a region. This is the upper limit for a technology and could be constrained in reality by, for example, available land in the case of wind onshore or solar pv. It is usually the same value each year as this upper limit does not change.
 
 This parameter can also be used to constrain capacity when necessary, ensuring that the model's early years remain within specific limits. For instance, if political plans require that capacity does not exceed a certain threshold in a given year (e.g., 2025), this parameter can be applied to restrict capacity expansion accordingly. However, users should apply this constraint cautiously, as it may prevent the model from selecting the most cost-effective solutions. It should only be used when necessary to enhance the model's realism.
+
+TotalAnnualMaxCapacityInvestment
+---------------------------------
+**Upper bound on the annual investment spending on new capacity per technology. Sets: [Region, Technology, Year] Unit: [M€]**
+
+Caps the *monetary* investment (i.e. ``NewCapacity`` × ``CapitalCost``) for a technology in a given region and year. Used to encode budget ceilings (e.g. a maximum public-subsidy envelope or a sector spending cap) rather than capacity-based limits — the per-year cap interacts with the technology's CapitalCost so the resulting allowed GW differs across years.
+
+TotalAnnualMinCapacityInvestment
+---------------------------------
+**Lower bound on the annual investment spending on new capacity per technology. Sets: [Region, Technology, Year] Unit: [M€]**
+
+Mirror of ``TotalAnnualMaxCapacityInvestment``: requires at least the given M€ of investment in a (region, technology, year). Implements minimum-spend commitments expressed in monetary rather than physical terms.
 
 TotalAnnualMinCapacity
 -------------------------
@@ -567,7 +678,7 @@ GroupTotalAnnualMaxCapacity
 -----------------------------
 **Maximum total (residual and new) capacity summed over a technology subset and region subset, each year. Sets: [TechnologySubset, RegionSubset, Year] Unit: [GW]**
 
-Same idea as :ref:`TotalAnnualMaxCapacity <totalannualmaxactivity>` but aggregated: the sum of ``TotalCapacityAnnual`` over every technology in the chosen :ref:`TagTechnologyToSubsets <tagtechnologytosubsets>` entry **and** every region in the chosen :ref:`TagRegionToSubsets <tagregiontosubsets>` entry must not exceed the supplied value in the given year. Typical use case: a single nation-wide cap (e.g. *all solar in USA* ≤ 300 GW in 2030) without having to write per-region per-technology rows.
+Same idea as :ref:`TotalAnnualMaxCapacity <totalannualmaxactivity>` but aggregated: the sum of ``TotalCapacityAnnual`` over every technology in the chosen :ref:`TagTechnologyToSubsets <tagtechnologytosubsets>` entry **and** every region in the chosen :ref:`TagRegionToSubsets <tagregiontosubsets>` entry must not exceed the supplied value in the given year. Typical use case: a single nation-wide cap (e.g. *all solar in EU* ≤ 300 GW in 2030) without having to write per-region per-technology rows.
 
 A sentinel value of 999999 disables the constraint for that (subset, subset, year) cell; the parameter therefore defaults to "no limit" when the data sheet is empty. Both subsets must have at least one resolved member in the active model; otherwise the constraint is silently skipped.
 
@@ -577,7 +688,7 @@ GroupTotalAnnualMinCapacity
 -----------------------------
 **Minimum total (residual and new) capacity summed over a technology subset and region subset, each year. Sets: [TechnologySubset, RegionSubset, Year] Unit: [GW]**
 
-Mirror of :ref:`grouptotalannualmaxcapacity`. The sum of ``TotalCapacityAnnual`` over the resolved (TechnologySubset, RegionSubset) members must be at least the supplied value in the given year. A value of 0 (or a missing row) is inert. Useful for expressing a national or super-regional capacity target (e.g. *at least 116 GW of nuclear across the USA in 2035*) that the optimiser can satisfy with any per-region allocation it likes.
+Mirror of :ref:`grouptotalannualmaxcapacity`. The sum of ``TotalCapacityAnnual`` over the resolved (TechnologySubset, RegionSubset) members must be at least the supplied value in the given year. A value of 0 (or a missing row) is inert. Useful for expressing a national or super-regional capacity target (e.g. *at least 30 GW of electrolyzers across Europe in 2035*) that the optimiser can satisfy with any per-region allocation it likes.
 
 TradeCapacity
 --------------
@@ -643,7 +754,7 @@ TradeRoute
 
 The trade route is defined by taking the distance (in km) from the centre point of one region to another. In general, there can only be connections between regions that are directly connected to each other. The flow always goes from Region1 to Region2. This means that a connection between two regions needs to be defined both ways (Region1 → Region2 & Region2 → Region 1)
 
-Variable Costs 
+VariableCost
 ---------------
 **Cost per unit of activity of the technology. Sets: [Region, Technology, Mode_of_operation, Year] Unit: [M€/PJ]**
 
