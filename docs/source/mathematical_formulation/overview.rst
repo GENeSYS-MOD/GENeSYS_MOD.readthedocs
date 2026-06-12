@@ -6,7 +6,7 @@ The Global Energy System Model (GENeSYS-MOD) is a framework for the computation 
 GENeSYS-MOD has been in development since 2016, when it was first created as a fork of the Open-Source Energy Modeling System (`OSeMOSYS  <http://www.osemosys.org/>`_).
 
 .. image:: /_static/genesysmod_timeline_small.jpg
-    :width: 650
+    :width: 800
 
 .. centered:: *Timeline of the development and noteworthy events in the history of GENeSYS-MOD.*
 
