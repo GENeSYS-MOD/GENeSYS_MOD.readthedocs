@@ -25,3 +25,34 @@
     margin-top: 5px;        /* Add spacing between logo and text */
     text-align: center;     /* Ensure the text is centered */
 }
+
+/* Widen the content area: the RTD theme caps it at 800px, which wastes most of
+   a modern screen. Use ~55% of the viewport, but never less than the old 800px
+   so small windows are unaffected. */
+.wy-nav-content {
+    max-width: max(800px, 55vw);
+}
+
+/* Centre images in the content area (captions are already centred, so
+   left-aligned images look awkward). Explicit :align: left/right directives
+   are respected via the :not() exclusions. */
+.rst-content img:not(.align-left):not(.align-right) {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.rst-content .figure,
+.rst-content figure {
+    text-align: center;
+}
+
+/* Long tables: the RTD theme forces table cells to a single line (white-space:
+   nowrap), which makes wide tables horizontally scrollable. Allow normal line
+   wrapping inside cells instead, so tables fit the content width. */
+.wy-table-responsive table td,
+.wy-table-responsive table th {
+    white-space: normal !important;
+}
+.wy-table-responsive {
+    overflow: visible !important;
+}

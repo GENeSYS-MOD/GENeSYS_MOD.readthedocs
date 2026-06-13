@@ -10,7 +10,7 @@ GENeSYS-MOD is originally based on the Open-Source Energy Modeling System (`OSeM
 The model covers the sectors electricity, buildings, industry, and transport. It also includes all linkages between those sectors, as well as flexibility options and energy trade between regions.
 
 .. image:: _static/genesysmod_structure_new_drawio.png
-    :width: 650
+    :width: 750
 
 .. centered:: *(Highly) simplified structure of the coverage of GENeSYS-MOD.*
 
@@ -19,7 +19,7 @@ A main focus of GENeSYS-MOD is to be easily understandable and usable, offering 
 GENeSYS-MOD has been in development since 2016 and is still continuously enhanced and upgraded (see the :doc:`Release Notes </release_notes/release_notes>`). A timeline of these developments and events is shown below.
 
 .. image:: _static/genesysmod_timeline_small.jpg
-    :width: 650
+    :width: 800
 
 .. centered:: *Timeline of the development and noteworthy events in the history of GENeSYS-MOD.*
 

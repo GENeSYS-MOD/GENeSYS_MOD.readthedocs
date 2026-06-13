@@ -9,7 +9,7 @@ Minor versions (v4.X) highlight meaningful changes, including new features, but 
 Sub-versions (v4.0.X) mark small changes and bugfixes, and might differ between the GAMS and Julia implementations. Those will be release on a need-oriented basis, e.g. if issues arise or bugs are found.
 
 .. image:: /_static/genesysmod_blocks_v4.png
-    :width: 650
+    :width: 800
 
 .. centered:: *Major changes and additions to GENeSYS-MOD across major model versions.*
 
