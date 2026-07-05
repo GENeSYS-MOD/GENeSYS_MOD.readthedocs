@@ -128,6 +128,10 @@ Setting any option from outside of genesysmod.gms will overwrite the default set
      - *[0,1]*
      - 0
      - Enables / disables a slack for the base year calibration. Only enable for debugging
+   * - switch_errorcheck
+     - *[0,1,2]*
+     - 2
+     - Input-data validation before the solve: ``0`` skip, ``1`` display findings only, ``2`` abort the run on hard errors (demand without producer, min > max bounds, non-normalised profiles, ...). Mirrors the Julia version's check set
    * - **Features / functionality options**
      -
      -

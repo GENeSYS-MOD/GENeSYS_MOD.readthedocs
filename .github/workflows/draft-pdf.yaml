@@ -1,9 +1,13 @@
 name: Draft PDF
 on:
   push:
+    # branches filter also keeps tag pushes (= release publishing) from
+    # triggering this workflow: path filters alone are ignored for tags.
+    branches:
+      - joss
     paths:
       - paper/**
-      - .github/workflows/draft-pdf.yml
+      - .github/workflows/draft-pdf.yaml
 
 jobs:
   paper:
