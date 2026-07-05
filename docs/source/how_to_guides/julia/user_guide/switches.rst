@@ -89,6 +89,22 @@ The list below provides a list of all available settings / switches for GENeSYS-
      - *[0,1]*
      - 0
      - Computes per-technology levelised cost of electricity in the post-processing
+   * - switch_results_db
+     - *[0,1]*
+     - 0
+     - If 1, all outputs (processed ``output_*`` tables, raw variables, VarPar intermediates, selected duals) are additionally written to a single DuckDB file ``genesysmod_db.duckdb`` in the result directory. Tables are keyed by a ``Scenario`` column (= ``extr_str_results``): re-running a scenario replaces exactly its rows, a new scenario name appends. Independent of the CSV switches. ``Scripts/manage_results_db.py`` offers listing, renaming, splitting, purging and compacting of the database
+   * - switch_test_data_load
+     - *[0,1]*
+     - 0
+     - If 1, dumps the fully processed input parameters as ``input_*`` tables into ``genesysmod_db.duckdb`` (one table per parameter / set / tag, real dimension names) and stops before the solve. Useful to inspect exactly what the model would compute with
+   * - switch_dump_input_data
+     - *[0,1]*
+     - 0
+     - Same input dump as ``switch_test_data_load``, but the run continues into the solve
+   * - switch_errorcheck
+     - *[0,1,2]*
+     - 2
+     - Input-data validation before the solve: ``0`` skip, ``1`` report findings only, ``2`` abort the run on hard errors (missing CapacityToActivityUnit, demand without producer, min > max bounds, non-normalised profiles, ...). Full offender lists are written to ``Errorcheck_<step>_<date>.txt`` in the result directory
    * - **Technical settings**
      -
      -

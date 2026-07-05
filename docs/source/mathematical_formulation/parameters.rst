@@ -690,6 +690,19 @@ GroupTotalAnnualMinCapacity
 
 Mirror of :ref:`grouptotalannualmaxcapacity`. The sum of ``TotalCapacityAnnual`` over the resolved (TechnologySubset, RegionSubset) members must be at least the supplied value in the given year. A value of 0 (or a missing row) is inert. Useful for expressing a national or super-regional capacity target (e.g. *at least 30 GW of electrolyzers across Europe in 2035*) that the optimiser can satisfy with any per-region allocation it likes.
 
+.. _grouptotalannualmaxnewcap:
+
+GroupTotalAnnualMaxNewCap
+-----------------------------
+**Maximum annual capacity additions (NewCapacity) summed over a technology subset and region subset, each year. Sets: [TechnologySubset, RegionSubset, Year] Unit: [GW]**
+
+While :ref:`grouptotalannualmaxcapacity` caps the capacity *level* of a group, this parameter caps the group's annual *additions*: the sum of ``NewCapacity`` over every technology in the chosen :ref:`TagTechnologyToSubsets <tagtechnologytosubsets>` entry and every region in the chosen :ref:`TagRegionToSubsets <tagregiontosubsets>` entry must not exceed the supplied value in each year. Typical use case: limiting the build-out *pace* of an emerging technology group to a realistic industrial ramp-up (e.g. *at most 5 GW/yr of new electrolyzers across Europe until 2030*) without hardcoding per-region or per-technology limits.
+
+A sentinel value of 999999 (or an absent data sheet) disables the constraint. The data sheet ``Par_GroupTotalAnnualMaxNewCap`` is optional.
+
+.. note::
+   Currently only available in the Julia version (GENeSYS-MOD.jl >= v4.5.0, constraint ``TCC5``). The GAMS version features the group capacity *level* limits above, but not yet the group *addition* limit.
+
 TradeCapacity
 --------------
 **Defines the capacities for trade between two regions in a specific year and for a specific fuel. Sets: [Region, Region.1, Fuel, Year] Unit: [GW]/[PJ]**
