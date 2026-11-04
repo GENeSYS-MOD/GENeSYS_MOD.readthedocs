@@ -6,8 +6,8 @@ project = 'GENeSYS-MOD | The Global Energy System Model'
 copyright = '2025, the GENeSYS-MOD community'
 author = 'The GENeSYS-MOD Community'
 
-release = '0.6.1'
-version = 'V 0.6.1'
+release = '0.6.2'
+version = 'V 0.6.2'
 
 # -- General configuration
 
